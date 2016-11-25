@@ -1,0 +1,28 @@
+graph graphname {
+    node [shape=diamond,style=filled,color=lightgrey]; Visit; ServiceSupply;
+    LabService; LabSupply; Appt;
+    node [shape=box]; Patient; Laboratory; Service; Supply; Payment;
+    node [shape=ellipse]; {node [label="Name"] Name0; Name1; Name2;}; {node [label="Cost"] Cost0; Cost1;}; {node [label="Date"] Date0; Date1; Date2;}
+    Service -- Cost0
+    Service -- Name0
+    Service -- ServiceSupply [label="1",len=1.00]
+    ServiceSupply -- Supply  [label="N",len=1.00]
+    Appt -- Patient [label="1",len=1.00];
+    Appt -- Date2 
+    Patient -- FName
+    Patient -- LName
+    Patient -- BirthDate
+    Visit -- LabService [label="N",len=1.00];
+    Visit -- Payment [label="1",len=1.00];
+    Visit -- Date0
+    Visit -- Appt [label="1",len=1.00];
+    Payment -- Amount
+    Payment -- Date1
+    Laboratory -- LabService [label="1",len=1.00];
+    LabService -- Service    [label="1",len=1.00];
+    Laboratory -- LabSupply [label="1",len=1.00];
+    Laboratory -- Name2
+    LabSupply -- Supply    [label="N",len=1.00];
+    Supply -- Cost1
+    Supply -- Name1
+}
