@@ -1,0 +1,10 @@
+DROP TABLE cdosborn.visit;
+DROP TABLE cdosborn.appt;
+DROP TABLE cdosborn.supply;
+DROP TABLE cdosborn.servicesupply;
+DROP TABLE cdosborn.labservice;
+DROP TABLE cdosborn.labsupply;
+DROP TABLE cdosborn.payment;
+DROP TABLE cdosborn.patient;
+DROP TABLE cdosborn.lab;
+DROP TABLE cdosborn.service;
