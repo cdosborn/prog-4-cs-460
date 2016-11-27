@@ -45,17 +45,21 @@ CREATE TABLE cdosborn.supply (
 );
 
 CREATE TABLE cdosborn.servicesupply (
+    servicesupply# INTEGER,
     service# INTEGER,
     supply# INTEGER,
     quantity INTEGER,
-    PRIMARY KEY (service#, supply#)
+    PRIMARY KEY (servicesupply#),
+    CONSTRAINT unique_service_supply UNIQUE (servicesupply#, service#, supply#)
 );
 
 CREATE TABLE cdosborn.labsupply (
+    labsupply# INTEGER,
     lab# INTEGER,
     supply# INTEGER,
     quantity INTEGER,
-    PRIMARY KEY (lab#, supply#)
+    PRIMARY KEY (labsupply#),
+    CONSTRAINT unique_lab_supply UNIQUE (labsupply#, lab#, supply#)
 );
 
 CREATE TABLE cdosborn.payment (
@@ -66,9 +70,11 @@ CREATE TABLE cdosborn.payment (
 );
 
 CREATE TABLE cdosborn.visit (
+    visit# INTEGER,
     appt# INTEGER,
     labservice# INTEGER,
-    PRIMARY KEY (appt#, labservice#),
+    PRIMARY KEY (visit#),
     FOREIGN KEY (appt#) REFERENCES cdosborn.appt (appt#),
-    FOREIGN KEY (labservice#) REFERENCES cdosborn.labservice (labservice#)
+    FOREIGN KEY (labservice#) REFERENCES cdosborn.labservice (labservice#),
+    CONSTRAINT unique_visit UNIQUE (visit#, appt#, labservice#)
 );
