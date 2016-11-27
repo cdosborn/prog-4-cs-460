@@ -15,6 +15,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Patient</servlet-name>
-    <url-pattern>/patients/*</url-pattern>
+    <url-pattern>/api/patients/*</url-pattern>
   </servlet-mapping>
 </web-app>
