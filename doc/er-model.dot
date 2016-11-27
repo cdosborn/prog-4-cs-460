@@ -1,6 +1,6 @@
 graph graphname {
     node [shape=diamond,style=filled,color=lightgrey]; Visit; ServiceSupply;
-    LabService; LabSupply; Appt; XAction;
+    LabService; LabSupply; Appt;
     node [shape=box]; Patient; Laboratory; Service; Supply; Payment;
     node [shape=ellipse]; {node [label="Quantity"] Quantity0; Quantity1;}; {node [label="Name"] Name0; Name1; Name2;}; {node [label="Cost"] Cost0; Cost1;}; {node [label="Date"] Date0; Date1; Date2;}
     Service -- Cost0
@@ -8,7 +8,7 @@ graph graphname {
     Service -- ServiceSupply [label="1",len=1.00]
     ServiceSupply -- Supply  [label="N",len=1.00]
     ServiceSupply -- Quantity1
-    Appt -- Patient [label="1",len=1.00];
+    Appt -- Patient [label="1",len=1.00]
     Appt -- Date2 
     Patient -- FName
     Patient -- LName
@@ -19,6 +19,7 @@ graph graphname {
     Visit [peripheries=2,color="black:invis:black", style=filled,color=lightgrey];
     Payment -- Amount
     Payment -- Date1
+    Payment -- Appt [label="1",len=1.00]
     Laboratory -- LabService [label="1",len=1.00];
     LabService -- Service    [label="1",len=1.00];
     Laboratory -- LabSupply [label="1",len=1.00];
@@ -27,6 +28,4 @@ graph graphname {
     LabSupply -- Quantity0
     Supply -- Cost1
     Supply -- Name1
-    XAction -- Appt
-    XAction -- Payment
 }
