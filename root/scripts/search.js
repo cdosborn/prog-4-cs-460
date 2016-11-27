@@ -1,4 +1,3 @@
 function Search() {
-  window.location = "searchprocess.jsp";
-  console.log("hi");
+  window.location = "patients.jsp";
 }

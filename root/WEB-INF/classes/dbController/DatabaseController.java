@@ -7,6 +7,7 @@ import java.sql.Statement;
 
 import java.sql.ResultSet;
 import java.util.*;
+import json.JSON;
 
 /**
  * Servlet implementation class for Servlet: DatabaseController
@@ -37,9 +38,7 @@ public class DatabaseController {
 
 
   public DatabaseController() {
-    // your cs login name
-    username = "cdosborn"; 
-    // your Oracle password, NNNN is the last four digits of your CSID
+    username = "cdosborn";
     password = "a1211";
     connect_string_ = "jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle";
   }
@@ -48,7 +47,7 @@ public class DatabaseController {
   /**
    * Closes the DBMS connection that was opened by the open call.
    */
-  public void Close() {
+  public void close() {
     try {
       statement_.close();
       connection_.close();
@@ -59,54 +58,40 @@ public class DatabaseController {
   }
 
 
-  /**
-   * Commits all update operations made to the dbms.
-   * If auto-commit is on, which is by default, it is not necessary to call
-   * this method.
-   */
-  public void Commit() {
-    try {
-      if (connection_ != null && !connection_.isClosed())
-        connection_.commit();
-    } catch (SQLException e) {
-      System.err.println("Commit failed");
-      e.printStackTrace();
-    }
+  public void Open() {
+      try {
+          Class.forName("oracle.jdbc.OracleDriver");
+          connection_ = DriverManager.getConnection(connect_string_, username, password);
+          statement_ = connection_.createStatement();
+          return;
+      } catch (SQLException sqlex) {
+          sqlex.printStackTrace();
+      } catch (ClassNotFoundException e) {
+          e.printStackTrace();
+          System.exit(1); //programemer/dbsm error
+      } catch (Exception ex) {
+          ex.printStackTrace();
+          System.exit(2);
+      }
   }
 
-    public void Open() {
-	try {
-	    Class.forName("oracle.jdbc.OracleDriver");
-	    connection_ = DriverManager.getConnection(connect_string_, username, password);
-	    statement_ = connection_.createStatement();
-	    return;
-	} catch (SQLException sqlex) {
-	    sqlex.printStackTrace();
-	} catch (ClassNotFoundException e) {
-	    e.printStackTrace();
-	    System.exit(1); //programemer/dbsm error
-	} catch (Exception ex) {
-	    ex.printStackTrace();
-	    System.exit(2);
-	}
-    }
-
-
-  public Vector<String> FindAllEmployees() {
-    String sql_query = "SELECT * FROM mccann.employee";
+  public JSON getPatients() {
+    JSON result = JSON.list();
+    JSON patient;
+    String sql_query = "SELECT * FROM cdosborn.patient";
     try {
       ResultSet rs  = statement_.executeQuery(sql_query);
-      Vector<String> result_employees = new Vector<String>();
       while (rs.next()) {
-         String temp_record = rs.getString("EMPNO") + "##" + rs.getString("EMPFNAME") +
-             "##" + rs.getString("EMPSALARY") + "##" + rs.getString("DEPARTNAME") + "##" +
-             rs.getString("BOSSNO");
-        result_employees.add(temp_record);
+          patient = JSON.object();
+          patient.insert("patient#", rs.getInt("patient#"));
+          patient.insert("fname",    rs.getString("fname"));
+          patient.insert("lname",    rs.getString("lname"));
+          patient.insert("dob",      rs.getString("dob"));
+          result.insert(patient);
       }
-      return result_employees;
     } catch (SQLException sqlex) {
       sqlex.printStackTrace();
     }
-    return null;
+    return result;
   }
 }
