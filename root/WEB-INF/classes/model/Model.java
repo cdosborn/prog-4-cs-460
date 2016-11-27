@@ -23,40 +23,33 @@ public class Model extends HttpServlet {
     public void service(HttpServletRequest req,
             HttpServletResponse res) throws ServletException, IOException
     {
+        // Return json by default
         res.setContentType("application/json");
+
+        // Encode response as UTF8
         res.setCharacterEncoding("UTF-8");
 
         // Open the db connection
         this.open();
 
+        // Delegate to deal with request
         super.service(req, res);
 
         // Close the db connection
         this.close();
-        // switch (request.getMethod()) {
-        //     case "POST":
-        //         this.create(req, resp);
-        //         break;
-        //     case "PUT":
-        //         this.update(req, resp);
-        //         break;
-        //     case "GET":
-        //         this.all(req, resp);
-        //         break;
-        //     case "DELETE":
-        //         this.delete(req, resp);
-        //         break;
-        //     default:
-        //         res.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
-        // }
     }
 
     public ResultSet execute(String query) throws SQLException {
-        return statement_.executeQuery(query);
+        if (statement_.execute(query)) {
+            return statement_.getResultSet();
+        }
+
+        // The query did not produce a result set (inserts)
+        return null;
     }
 
     private void open() {
-        String username = "cdosborn"; 
+        String username = "cdosborn";
         String password = "a1211";
         String connect_string_ = "jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle";
 	try {
