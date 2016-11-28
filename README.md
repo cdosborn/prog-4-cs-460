@@ -34,6 +34,10 @@ curl "http://lectura.cs.arizona.edu:41211/api/patients/"
 ```
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'fname=alfred&lname=alfonzo&dob=1967-2-15&patient#=5' "http://lectura.cs.arizona.edu:41211/api/patients/"
 ```
+### Delete a patient
+```
+curl -X DELETE "http://lectura.cs.arizona.edu:41211/api/patients?patient%23=1"
+```
 
 ## Create the entity model diagram
 ```

@@ -8,6 +8,85 @@ import java.util.*;
 import json.JSON;
 
 public class Patient extends Model {
+    public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        // The json for reporting errors
+        JSON error = JSON.object();
+
+        // Validate that the pk is passed
+        if (req.getParameter("patient#") == null) {
+                // Missing parameter, return bad request
+                resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                error.insert("error", "Missing required parameters");
+                resp.getWriter().write(error.toString());
+                return;
+        }
+
+        String pno = req.getParameter("patient#");
+
+        // Delete all relevant patient visits
+        String visitQuery = String.format(
+            " DELETE FROM cdosborn.visit v" +
+            " WHERE EXISTS(" +
+            " SELECT * FROM  cdosborn.appt a, cdosborn.patient p" +
+            " WHERE v.appt#=a.appt# " +
+            "   AND a.patient#=p.patient#" +
+            "   AND p.patient#=%s)", pno);
+
+        // Delete all relevant patient appts
+        String apptQuery = String.format(
+            " DELETE FROM cdosborn.appt a" +
+            " WHERE EXISTS(" +
+            " SELECT * FROM cdosborn.patient p" +
+            " WHERE a.patient#=p.patient#" +
+            "   AND p.patient#=%s)", pno);
+
+        // Delete the patient
+        String patientQuery = String.format(
+            "DELETE FROM cdosborn.patient p WHERE p.patient#=%s", pno);
+
+        try {
+            this.executeMany(visitQuery, apptQuery, patientQuery);
+        } catch (SQLException exc) {
+            throw new ServletException("Database error!", exc);
+        }
+    }
+
+    public void performPut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        // The json for the updated tuple
+        JSON result = JSON.object();
+
+        // The json for reporting errors
+        JSON error = JSON.object();
+
+        String pno = req.getParameter("patient#");
+        String fname = req.getParameter("fname");
+        String lname = req.getParameter("lname");
+        String dob = req.getParameter("dob");
+
+        // Define SQL Update's where clause
+        String whereClause = String.format("WHERE %s=%s",
+               "patient#", pno);
+
+        // Define the pairs of column and values to be updated
+        String updatePairs = String.format("%s=%s,%s='%s',%s='%s',%s=DATE '%s'",
+               "patient#", pno,
+               "fname", fname,
+               "lname", lname,
+               "dob", dob);
+
+        // Define the entire update query
+        String query = String.format("UPDATE cdosborn.patient SET %s %s",
+                updatePairs,
+                whereClause);
+
+        // Update tuple
+        try {
+            this.execute(query);
+        } catch (SQLException exc) {
+            throw new ServletException("Database error!", exc);
+        }
+    }
+
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         // The json for the updated tuple
         JSON result = JSON.object();
@@ -39,14 +118,12 @@ public class Patient extends Model {
             this.execute(query);
         } catch (SQLException exc) {
 
-            // Catch duplicate tuple error
+            // Perform a PUT if we get a duplicate entry error
             if (exc.getErrorCode() == 1) {
-                error.insert("error", "Record already exists" );
-                resp.getWriter().write(error.toString());
-                return;
+                this.performPut(req, resp);
+            } else {
+                throw new ServletException("Database error!", exc);
             }
-
-            throw new ServletException("Database error!", exc);
         }
 
         // Fetch updated model
@@ -68,6 +145,7 @@ public class Patient extends Model {
         // Write response
         resp.getWriter().write(result.toString());
     }
+
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         JSON result = JSON.list();
         JSON patient;

@@ -47,6 +47,26 @@ public class Model extends HttpServlet {
         // The query did not produce a result set (inserts)
         return null;
     }
+    public void executeMany(String... queries) throws SQLException {
+        try {
+            // Begin a transaction
+            connection_.setAutoCommit(false);
+            for (String query : queries) {
+                statement_.execute(query);
+            }
+        } catch (SQLException exc) {
+            // Rollback and re-raise the exception (note finally will be called)
+            connection_.rollback();
+            throw exc;
+        } finally {
+            // Always revert to autocommit no matter what exceptions are
+            // thrown
+            connection_.setAutoCommit(true);
+        }
+
+        // Only commit if everything went well
+        connection_.commit();
+    }
 
     private void open() {
         String username = "cdosborn";
