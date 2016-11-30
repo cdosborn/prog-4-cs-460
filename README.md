@@ -1,7 +1,10 @@
 ## Installing the webapp
+Download the jstl jar [here](http://central.maven.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.jar).
+Place it alongside the jars in the lib folder of tomcat.
+
 Create a symlink so the webapp's root is the folder 'root' in this repo
 ```
-ln -snf /path/to/root/in/this/repo /path/to/webapps/ROOT
+ln -snf /path/to/root/in/this/repo /path/to/tomcat/webapps/ROOT
 ```
 
 ## Running the webapp
@@ -24,20 +27,6 @@ The sql is organized into several files.
     > @drop -- Deletes all tables
     > @insert -- Inserts all table data
 
-## Making requests to the API
-Note: check the url in each of the requests and adjust the port accordingly
-### Get all /api/patients
-```
-curl "http://lectura.cs.arizona.edu:41211/api/patients/"
-```
-### Post to /api/patients
-```
-curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'fname=alfred&lname=alfonzo&dob=1967-2-15&patient#=5' "http://lectura.cs.arizona.edu:41211/api/patients/"
-```
-### Delete a patient
-```
-curl -X DELETE "http://lectura.cs.arizona.edu:41211/api/patients?patient%23=1"
-```
 
 ## Create the entity model diagram
 ```
