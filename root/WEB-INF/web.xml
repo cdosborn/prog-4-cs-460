@@ -9,12 +9,58 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+
   <servlet>
     <servlet-name>Patient</servlet-name>
-    <servlet-class>model.Patient</servlet-class>
+    <servlet-class>controller.Patient</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Patient</servlet-name>
-    <url-pattern>/api/patients/*</url-pattern>
+    <url-pattern>/patient.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>PatientEdit</servlet-name>
+      <jsp-file>/WEB-INF/view/patient/edit.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PatientEdit</servlet-name>
+    <url-pattern>/patient/edit.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>PatientCreate</servlet-name>
+      <jsp-file>/WEB-INF/view/patient/create.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>PatientCreate</servlet-name>
+      <url-pattern>/patient/create.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>PatientDelete</servlet-name>
+      <jsp-file>/WEB-INF/view/patient/delete.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>PatientDelete</servlet-name>
+      <url-pattern>/patient/delete.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>ErrorDuplicate</servlet-name>
+      <jsp-file>/WEB-INF/view/error/duplicate_key_error.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ErrorDuplicate</servlet-name>
+    <url-pattern>/error/duplicate_key_error.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>ErrorNoRecord</servlet-name>
+      <jsp-file>/WEB-INF/view/error/no_record.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ErrorNoRecord</servlet-name>
+    <url-pattern>/error/no_record.jsp</url-pattern>
   </servlet-mapping>
 </web-app>
