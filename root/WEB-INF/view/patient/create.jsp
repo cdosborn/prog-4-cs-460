@@ -1,3 +1,4 @@
+<jsp:include page="/WEB-INF/view/partials/header.jsp"></jsp:include>
 <form action="/patient.jsp" method="post">
 <p>Enter the details for a new patient</p>
 <table>
@@ -22,3 +23,4 @@
 </table>
 <input type="submit" value="Submit">
 </form>
+<jsp:include page="/WEB-INF/view/partials/footer.jsp"></jsp:include>

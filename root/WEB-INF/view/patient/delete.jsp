@@ -1,3 +1,4 @@
+<jsp:include page="/WEB-INF/view/partials/header.jsp"></jsp:include>
 <form action="/patient.jsp" method="post">
 <input type="hidden" name="_method" value="delete" />
 <p>Enter the patient# for the patient to be deleted</p>
@@ -11,3 +12,4 @@
 </table>
 <input type="submit" value="Submit">
 </form>
+<jsp:include page="/WEB-INF/view/partials/footer.jsp"></jsp:include>
