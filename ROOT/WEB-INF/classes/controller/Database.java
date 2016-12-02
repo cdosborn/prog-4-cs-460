@@ -16,23 +16,34 @@ public class Database {
     /**
      * A handle to the statement.
      */
-    private Statement statement_;
+    private List<Statement> statements;
 
     public int executeUpdate(String query) throws SQLException {
+        Statement stmt = this.createStatement();
+
         // Return the number of affected rows
-        return statement_.executeUpdate(query);
+        return stmt.executeUpdate(query);
     }
 
     public ResultSet execute(String query) throws SQLException {
-        return statement_.executeQuery(query);
+        Statement stmt = this.createStatement();
+
+        return stmt.executeQuery(query);
+    }
+
+    private Statement createStatement() throws SQLException {
+        Statement stmt = connection_.createStatement();
+        statements.add(stmt);
+        return stmt;
     }
 
     public void executeMany(String... queries) throws SQLException {
+        Statement stmt = this.createStatement();
         try {
             // Begin a transaction
             connection_.setAutoCommit(false);
             for (String query : queries) {
-                statement_.execute(query);
+                stmt.execute(query);
             }
         } catch (SQLException exc) {
             // Rollback and re-raise the exception (note finally will be called)
@@ -55,7 +66,7 @@ public class Database {
 	try {
 	    Class.forName("oracle.jdbc.OracleDriver");
 	    connection_ = DriverManager.getConnection(connect_string_, username, password);
-	    statement_ = connection_.createStatement();
+            statements = new ArrayList<>();
 	    return;
 	} catch (SQLException sqlex) {
 	    sqlex.printStackTrace();
@@ -74,11 +85,20 @@ public class Database {
      */
     public void close() {
         try {
-            statement_.close();
-            connection_.close();
+            // Try closing each open statement
+            try {
+                for (Statement s: statements) {
+                    s.close();
+                }
+
+            // No matter what, close the connection
+            } finally {
+                connection_.close();
+            }
+
+        // Catch any raised exceptions from statement/connection closing
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        connection_ = null;
     }
 }

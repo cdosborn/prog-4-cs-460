@@ -20,6 +20,15 @@
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>Charge</servlet-name>
+    <servlet-class>controller.Charge</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Charge</servlet-name>
+    <url-pattern>/charge.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
       <servlet-name>PatientEdit</servlet-name>
       <jsp-file>/WEB-INF/view/patient/edit.jsp</jsp-file>
   </servlet>
