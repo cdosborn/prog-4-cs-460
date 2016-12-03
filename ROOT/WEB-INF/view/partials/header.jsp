@@ -6,3 +6,4 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 </head>
 <body>
+<div style="max-width:500px;margin:auto">
