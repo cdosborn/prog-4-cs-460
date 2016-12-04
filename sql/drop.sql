@@ -2,6 +2,7 @@ DROP TABLE cdosborn.visit;
 DROP TABLE cdosborn.appt;
 DROP TABLE cdosborn.supply;
 DROP TABLE cdosborn.servicesupply;
+DROP TABLE cdosborn.procedure;
 DROP TABLE cdosborn.labservice;
 DROP TABLE cdosborn.labsupply;
 DROP TABLE cdosborn.payment;

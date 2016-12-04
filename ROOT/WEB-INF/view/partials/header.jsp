@@ -4,5 +4,19 @@
 <head>
 <title>Title</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<style>
+table.border {
+    border-collapse: collapse;
+}
+
+table.border th, table.border td {
+    border: 3px solid #f8f6f6;
+}
+table.border th, table.border td {
+    padding: 5px;
+    text-align: left;
+}
+</style>
 </head>
 <body>
+<div style="max-width:500px;margin:auto">

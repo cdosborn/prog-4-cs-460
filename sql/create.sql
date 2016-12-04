@@ -27,6 +27,11 @@ CREATE TABLE cdosborn.lab (
     PRIMARY KEY (lab#)
 );
 
+CREATE TABLE cdosborn.procedure (
+    service# INTEGER NOT NULL,
+    FOREIGN KEY (service#) REFERENCES cdosborn.service (service#)
+);
+
 CREATE TABLE cdosborn.labservice (
     labservice# INTEGER NOT NULL,
     lab# INTEGER NOT NULL,
@@ -62,20 +67,21 @@ CREATE TABLE cdosborn.labsupply (
     CONSTRAINT unique_lab_supply UNIQUE (lab#, supply#)
 );
 
--- TODO: we need to find out which model to link this to (visit?)
 CREATE TABLE cdosborn.payment (
     payment# INTEGER NOT NULL,
+    patient# INTEGER NOT NULL,
     time DATE NOT NULL,
     amount FLOAT NOT NULL,
-    PRIMARY KEY(payment#)
+    PRIMARY KEY(payment#),
+    FOREIGN KEY (patient#) REFERENCES cdosborn.patient (patient#)
 );
 
 CREATE TABLE cdosborn.visit (
     visit# INTEGER NOT NULL,
     appt# INTEGER NOT NULL,
-    labservice# INTEGER NOT NULL,
+    service# INTEGER NOT NULL,
     PRIMARY KEY (visit#),
     FOREIGN KEY (appt#) REFERENCES cdosborn.appt (appt#),
-    FOREIGN KEY (labservice#) REFERENCES cdosborn.labservice (labservice#),
-    CONSTRAINT unique_visit UNIQUE (appt#, labservice#)
+    FOREIGN KEY (service#) REFERENCES cdosborn.service (service#),
+    CONSTRAINT unique_visit UNIQUE (appt#, service#)
 );

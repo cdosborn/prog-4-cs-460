@@ -1,17 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/partials/header.jsp"></jsp:include>
-<h2><a href="/">home</a>&nbsp;/ patients</h2>
-<div>
-    <a href='/patient/edit.jsp'>edit</a>
-    <a href='/patient/create.jsp'>create</a>
-    <a href='/patient/delete.jsp'>delete</a>
-</div>
+<h2><a href="/">home</a>&nbsp;/&nbsp;<a href="/queries.jsp">queries</a>&nbsp;/ transactions by patient</h2>
+<form action="/query/xaction-per-patient.jsp" method="post">
+    <p>View transactions by patient#: </span><input type="number" name="patient#" placeholder="123">
+    <input type="submit" value="Submit">
+</form>
 <c:choose>
     <c:when test="${numrows == 0}">
-        <p>The table has no results.</p>
+        <p>The patient has no transactions.</p>
     </c:when>
     <c:otherwise>
-        <p>There are ${numrows} results.</p>
         <table class="border">
             <thead>
                 <tr>
