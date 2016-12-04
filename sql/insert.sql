@@ -8,6 +8,7 @@ INSERT INTO cdosborn.patient       VALUES (3, 'Tuple', 'McRow', DATE '1876-12-15
 
 INSERT INTO cdosborn.supply        VALUES (1, 'X-Ray Bitewing', 5.00);
 INSERT INTO cdosborn.supply        VALUES (2, 'X-Ray Occlusal Film', 5.00);
+-- Do not include this supply in any services, used in 4th query
 INSERT INTO cdosborn.supply        VALUES (3, 'Fluoride 1L', 8.00);
 
 INSERT INTO cdosborn.service       VALUES (1, 'Root Canal', 30.00);
