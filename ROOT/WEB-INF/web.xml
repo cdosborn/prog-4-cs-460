@@ -55,6 +55,14 @@
       <url-pattern>/queries/todays-appts.jsp</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+      <servlet-name>MostUsedSupplies</servlet-name>
+      <servlet-class>controller.MostUsedSupplies</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>MostUsedSupplies</servlet-name>
+      <url-pattern>/queries/most-used-supplies.jsp</url-pattern>
+  </servlet-mapping>
 
   <servlet>
       <servlet-name>PatientEdit</servlet-name>

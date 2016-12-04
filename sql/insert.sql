@@ -23,8 +23,9 @@ INSERT INTO cdosborn.appt          VALUES (3, 1, SYSDATE - 1);
 INSERT INTO cdosborn.appt          VALUES (4, 2, SYSDATE);
 
 -- #, appt#, service#
-INSERT INTO cdosborn.visit         VALUES (2, 2, 2);
 INSERT INTO cdosborn.visit         VALUES (1, 1, 1);
+INSERT INTO cdosborn.visit         VALUES (2, 2, 2);
+INSERT INTO cdosborn.visit         VALUES (3, 3, 2);
 
 -- payment#, patient#, time, amount,
 INSERT INTO cdosborn.payment       VALUES (1, 2, DATE '2020-10-05', 25.00);

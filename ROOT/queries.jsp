@@ -11,7 +11,7 @@
         <a href="/queries/todays-appts.jsp">Today's appointments</a>
     </li>
     <li>
-        <a href="/patient.jsp">Cheapest supplies by lab</a>
+        <a href="/queries/most-used-supplies.jsp">Most used supplies</a>
     </li>
     <li>
         <a href="/patient.jsp">Patients with birthdays this month</a>
