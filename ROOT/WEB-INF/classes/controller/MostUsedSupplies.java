@@ -19,11 +19,13 @@ public class MostUsedSupplies extends HttpServlet {
 
         // Query supplies most used in treating patients
         String query =
-            " SELECT  supply.supply#, supply.name, SUM(servicesupply.quantity) total" +
+            " SELECT supply.supply#, supply.name, SUM(COALESCE(servicesupply.quantity,0)) total" +
             " FROM" +
-            "     visit, servicesupply, supply" +
-            " WHERE visit.service# = servicesupply.service#" +
-            "   AND servicesupply.supply# = supply.supply#" +
+            "     visit" +
+            "     INNER JOIN" +
+            "     servicesupply ON visit.service# = servicesupply.service#" +
+            "     RIGHT OUTER JOIN" +
+            "     supply ON servicesupply.supply# = supply.supply#" +
             " GROUP BY supply.supply#, supply.name, supply.supply#" +
             " ORDER BY total DESC";
 
