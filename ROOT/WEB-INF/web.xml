@@ -46,6 +46,15 @@
       <url-pattern>/queries/patients-no-show.jsp</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+      <servlet-name>DailyAppts</servlet-name>
+      <servlet-class>controller.DailyAppts</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>DailyAppts</servlet-name>
+      <url-pattern>/queries/todays-appts.jsp</url-pattern>
+  </servlet-mapping>
+
 
   <servlet>
       <servlet-name>PatientEdit</servlet-name>

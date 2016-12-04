@@ -20,6 +20,8 @@ INSERT INTO cdosborn.labservice    VALUES (1, 1, 1);
 INSERT INTO cdosborn.appt          VALUES (1, 1, SYSDATE + 1);
 INSERT INTO cdosborn.appt          VALUES (2, 2, SYSDATE + 1);
 INSERT INTO cdosborn.appt          VALUES (3, 1, SYSDATE - 1);
+INSERT INTO cdosborn.appt          VALUES (4, 2, SYSDATE);
+
 -- #, appt#, service#
 INSERT INTO cdosborn.visit         VALUES (2, 2, 2);
 INSERT INTO cdosborn.visit         VALUES (1, 1, 1);

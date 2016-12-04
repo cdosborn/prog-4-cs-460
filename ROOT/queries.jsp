@@ -8,7 +8,7 @@
         <a href="/queries/patients-no-show.jsp">Appointments where the patient did not show up</a>
     </li>
     <li>
-        <a href="/patient.jsp">This week's appointments</a>
+        <a href="/queries/todays-appts.jsp">Today's appointments</a>
     </li>
     <li>
         <a href="/patient.jsp">Cheapest supplies by lab</a>
