@@ -34,7 +34,7 @@
   </servlet>
   <servlet-mapping>
       <servlet-name>XActionsPerPatient</servlet-name>
-      <url-pattern>/query/xaction-per-patient.jsp</url-pattern>
+      <url-pattern>/queries/xaction-per-patient.jsp</url-pattern>
   </servlet-mapping>
 
   <servlet>
