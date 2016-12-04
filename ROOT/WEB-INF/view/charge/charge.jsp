@@ -14,25 +14,27 @@
     </c:when>
     <c:otherwise>
         <p>There are ${numrows} results. Each result is a charge table for a specific service.</p>
-        <table>
         <c:forEach items="${tables}" var="table">
-            <tr>
-            <c:forEach items="${cols}" var="col">
-                <td>${col}</td>
-            </c:forEach>
-            </tr>
-            <c:forEach items="${table}" var="row" varStatus="status">
-            <tr>
-                <c:forEach items="${row}" var="elem">
-                <td>${elem}</td>
+        <table class="border">
+            <thead>
+                <tr>
+                <c:forEach items="${cols}" var="col">
+                    <th>${col}</td>
                 </c:forEach>
-            </tr>
-            </c:forEach>
-            <tr>
-            <c:forEach items="${cols}" var="col"> <td>&nbsp;</td></c:forEach>
-            </tr>
-        </c:forEach>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${table}" var="row" varStatus="status">
+                <tr>
+                    <c:forEach items="${row}" var="elem">
+                    <td>${elem}</td>
+                    </c:forEach>
+                </tr>
+                </c:forEach>
+            </tbody>
         </table>
+        <br/>
+        </c:forEach>
     </c:otherwise>
 </c:choose>
 <jsp:include page="/WEB-INF/view/partials/footer.jsp"></jsp:include>

@@ -188,7 +188,7 @@ public class Patient extends HttpServlet {
         try {
             ResultSet rs  = db.execute(query);
             while (rs.next()) {
-                row = new ArrayList();
+                row = new ArrayList<>();
                 for (String col : cols) {
                     row.add(rs.getString(col));
                 }

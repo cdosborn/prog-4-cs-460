@@ -52,7 +52,7 @@ public class Charge extends HttpServlet {
                 try {
                     chargeResults = db.execute(subquery);
                     while (chargeResults.next()) {
-                        row = new ArrayList();
+                        row = new ArrayList<>();
                         for (String col : cols) {
                             row.add(chargeResults.getString(col));
                         }

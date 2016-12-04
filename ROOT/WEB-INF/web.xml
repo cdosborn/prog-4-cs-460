@@ -29,6 +29,15 @@
   </servlet-mapping>
 
   <servlet>
+      <servlet-name>XActionsPerPatient</servlet-name>
+      <servlet-class>controller.TransactionsPerPatient</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>XActionsPerPatient</servlet-name>
+      <url-pattern>/query/xaction-per-patient.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
       <servlet-name>PatientEdit</servlet-name>
       <jsp-file>/WEB-INF/view/patient/edit.jsp</jsp-file>
   </servlet>

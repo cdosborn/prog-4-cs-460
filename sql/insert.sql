@@ -14,6 +14,14 @@ INSERT INTO cdosborn.service       VALUES (2, 'Oral Exam', 30.00);
 INSERT INTO cdosborn.servicesupply VALUES (1, 2, 1, 4);
 INSERT INTO cdosborn.servicesupply VALUES (2, 2, 2, 1);
 
-INSERT INTO cdosborn.appt          VALUES (1, 1, SYSDATE);
 INSERT INTO cdosborn.labservice    VALUES (1, 1, 1);
+
+-- #, patient#, date 
+INSERT INTO cdosborn.appt          VALUES (2, 2, SYSDATE);
+INSERT INTO cdosborn.appt          VALUES (1, 1, SYSDATE);
+-- #, appt#, service#
+INSERT INTO cdosborn.visit         VALUES (2, 2, 2);
 INSERT INTO cdosborn.visit         VALUES (1, 1, 1);
+
+-- payment#, patient#, time, amount,
+INSERT INTO cdosborn.payment       VALUES (1, 2, DATE '2020-10-05', 25.00);

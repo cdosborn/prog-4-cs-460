@@ -2,7 +2,7 @@
 <h2><a href="/">home</a>&nbsp;/ queries</h2>
 <ol>
     <li>
-        <a href="/patient.jsp">Outstanding payments for a patient</a>
+        <a href="/query/xaction-per-patient.jsp">Transactions by patient</a>
     </li>
     <li>
         <a href="/patient.jsp">Patients that did not show up for an appointment</a>
