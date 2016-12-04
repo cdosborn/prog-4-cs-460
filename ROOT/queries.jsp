@@ -14,7 +14,7 @@
         <a href="/queries/most-used-supplies.jsp">Most used supplies</a>
     </li>
     <li>
-        <a href="/patient.jsp">Patients with birthdays this month</a>
+        <a href="/queries/patient-birthdays.jsp">Patients with birthdays this month</a>
     </li>
 </ol>
 <jsp:include page="/WEB-INF/view/partials/footer.jsp"></jsp:include>

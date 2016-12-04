@@ -3,6 +3,8 @@ INSERT INTO cdosborn.lab           VALUES (2, 'Grant Radiography');
 
 INSERT INTO cdosborn.patient       VALUES (1, 'Connor', 'Osborn', DATE '1993-10-13');
 INSERT INTO cdosborn.patient       VALUES (2, 'Margarita', 'Norzagaray', DATE '1993-01-15');
+-- The data here is for the 5th query
+INSERT INTO cdosborn.patient       VALUES (3, 'Tuple', 'McRow', DATE '1876-12-15');
 
 INSERT INTO cdosborn.supply        VALUES (1, 'X-Ray Bitewing', 5.00);
 INSERT INTO cdosborn.supply        VALUES (2, 'X-Ray Occlusal Film', 5.00);
@@ -16,7 +18,7 @@ INSERT INTO cdosborn.servicesupply VALUES (2, 2, 2, 1);
 
 INSERT INTO cdosborn.labservice    VALUES (1, 1, 1);
 
--- #, patient#, date 
+-- #, patient#, date
 INSERT INTO cdosborn.appt          VALUES (1, 1, SYSDATE + 1);
 INSERT INTO cdosborn.appt          VALUES (2, 2, SYSDATE + 1);
 INSERT INTO cdosborn.appt          VALUES (3, 1, SYSDATE - 1);

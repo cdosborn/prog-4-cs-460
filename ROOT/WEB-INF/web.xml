@@ -65,6 +65,15 @@
   </servlet-mapping>
 
   <servlet>
+      <servlet-name>PatientBirthdays</servlet-name>
+      <servlet-class>controller.PatientBirthdays</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>PatientBirthdays</servlet-name>
+      <url-pattern>/queries/patient-birthdays.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
       <servlet-name>PatientEdit</servlet-name>
       <jsp-file>/WEB-INF/view/patient/edit.jsp</jsp-file>
   </servlet>
