@@ -38,6 +38,16 @@
   </servlet-mapping>
 
   <servlet>
+      <servlet-name>PatientsNoShow</servlet-name>
+      <servlet-class>controller.PatientsNoShow</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>PatientsNoShow</servlet-name>
+      <url-pattern>/queries/patients-no-show.jsp</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
       <servlet-name>PatientEdit</servlet-name>
       <jsp-file>/WEB-INF/view/patient/edit.jsp</jsp-file>
   </servlet>

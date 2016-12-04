@@ -5,7 +5,7 @@
         <a href="/queries/xaction-per-patient.jsp">Transactions by patient</a>
     </li>
     <li>
-        <a href="/patient.jsp">Patients that did not show up for an appointment</a>
+        <a href="/queries/patients-no-show.jsp">Appointments where the patient did not show up</a>
     </li>
     <li>
         <a href="/patient.jsp">This week's appointments</a>
