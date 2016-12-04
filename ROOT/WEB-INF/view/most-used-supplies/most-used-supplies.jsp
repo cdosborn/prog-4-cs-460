@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/partials/header.jsp"></jsp:include>
 <h2><a href="/">home</a>&nbsp;/&nbsp;<a href="/queries.jsp">queries</a>&nbsp;/ most-used-supplies</h2>
-<p>View most used supplies</p>
+<p>View most used supplies. Total represents the number of times a supply was used across all patient visits.</p>
 <c:choose>
     <c:when test="${numrows == 0}">
         <p>There are no results</p>
