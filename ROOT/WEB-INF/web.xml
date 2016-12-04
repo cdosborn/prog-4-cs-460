@@ -117,4 +117,42 @@
     <servlet-name>ErrorNoRecord</servlet-name>
     <url-pattern>/error/no_record.jsp</url-pattern>
   </servlet-mapping>
+    
+  <!-- APPOINTMENTS -->
+  <servlet>
+    <servlet-name>Appointments</servlet-name>
+    <servlet-class>controller.Appt</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Appointments</servlet-name>
+    <url-pattern>/appt.jsp</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+      <servlet-name>CreateAppointment</servlet-name>
+      <jsp-file>/WEB-INF/view/appt/create.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>CreateAppointment</servlet-name>
+      <url-pattern>/appt/create.jsp</url-pattern>
+  </servlet-mapping> 
+    
+  <servlet>
+      <servlet-name>EditAppointment</servlet-name>
+      <jsp-file>/WEB-INF/view/appt/edit.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditAppointment</servlet-name>
+    <url-pattern>/appt/edit.jsp</url-pattern>
+  </servlet-mapping>  
+ 
+  <servlet>
+      <servlet-name>DeleteAppointment</servlet-name>
+      <jsp-file>/WEB-INF/view/appt/delete.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>DeleteAppointment</servlet-name>
+      <url-pattern>/appt/delete.jsp</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
