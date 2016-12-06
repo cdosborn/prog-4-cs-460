@@ -2,19 +2,19 @@
 <h2><a href="/">home</a>&nbsp;/ queries</h2>
 <ol>
     <li>
-        <a href="/query/xaction-per-patient.jsp">Transactions by patient</a>
+        <a href="/queries/xaction-per-patient.jsp">Transactions by patient</a>
     </li>
     <li>
-        <a href="/patient.jsp">Patients that did not show up for an appointment</a>
+        <a href="/queries/patients-no-show.jsp">Appointments where the patient did not show up</a>
     </li>
     <li>
-        <a href="/patient.jsp">This week's appointments</a>
+        <a href="/queries/todays-appts.jsp">Today's appointments</a>
     </li>
     <li>
-        <a href="/patient.jsp">Cheapest supplies by lab</a>
+        <a href="/queries/most-used-supplies.jsp">Most used supplies</a>
     </li>
     <li>
-        <a href="/patient.jsp">Patients with birthdays this month</a>
+        <a href="/queries/patient-birthdays.jsp">Patients with birthdays this month</a>
     </li>
 </ol>
 <jsp:include page="/WEB-INF/view/partials/footer.jsp"></jsp:include>

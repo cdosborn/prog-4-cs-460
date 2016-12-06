@@ -34,7 +34,43 @@
   </servlet>
   <servlet-mapping>
       <servlet-name>XActionsPerPatient</servlet-name>
-      <url-pattern>/query/xaction-per-patient.jsp</url-pattern>
+      <url-pattern>/queries/xaction-per-patient.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>PatientsNoShow</servlet-name>
+      <servlet-class>controller.PatientsNoShow</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>PatientsNoShow</servlet-name>
+      <url-pattern>/queries/patients-no-show.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>DailyAppts</servlet-name>
+      <servlet-class>controller.DailyAppts</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>DailyAppts</servlet-name>
+      <url-pattern>/queries/todays-appts.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>MostUsedSupplies</servlet-name>
+      <servlet-class>controller.MostUsedSupplies</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>MostUsedSupplies</servlet-name>
+      <url-pattern>/queries/most-used-supplies.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>PatientBirthdays</servlet-name>
+      <servlet-class>controller.PatientBirthdays</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>PatientBirthdays</servlet-name>
+      <url-pattern>/queries/patient-birthdays.jsp</url-pattern>
   </servlet-mapping>
 
   <servlet>
