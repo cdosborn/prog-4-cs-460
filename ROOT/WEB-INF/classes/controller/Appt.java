@@ -1,3 +1,33 @@
+/*+----------------------------------------------------------------------
+ ||
+ ||  Class Appt 
+ ||
+ ||         Author:  Margarita Norzagaray 
+ ||
+ ||        Purpose:  This class is the controller for the 'appointments' 
+ ||                  view. 
+ ||
+ ||  Inherits From:  Extends HttpServlet. 
+ ||
+ ||     Interfaces:  None. 
+ ||
+ |+-----------------------------------------------------------------------
+ ||
+ ||      Constants:  None. 
+ ||
+ |+-----------------------------------------------------------------------
+ ||
+ ||   Constructors:  None; 
+ ||
+ ||  Class Methods:  doDelete(HttpServletRequest req, HttpServletResponse resp) 
+ ||                  doPut(HttpServletRequest req, HttpServletResponse resp)
+ ||                  doPost(HttpServletRequest req, HttpServletResponse resp)
+ ||                  doGet(HttpServletRequest req, HttpServletResponse resp) 
+ ||                  None of the classes return anything. 
+ ||
+ ||  Inst. Methods:  None. 
+ ||
+ ++-----------------------------------------------------------------------*/
 package controller;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -7,6 +37,24 @@ import java.util.*;
 
 public class Appt extends HttpServlet {
     
+    /*---------------------------------------------------------------------
+    |  Method doDelete
+    |
+    |  Purpose:  Deletes a specific appointment with the information (pk) 
+    |            given by the user. Calls doGet to show the updated tuples
+    |            to the user. 
+    |
+    |  Pre-condition:  Said appointment should exists in the database.
+    |
+    |  Post-condition: Said appointment will be deleted from the database. 
+    |
+    |  Parameters:
+    |      req -- HttpServletRequest containing user input. 
+    |      resp -- HttpServletResponse that will be sent back to the
+    |              appt.jsp file. 
+    |   
+    |  Returns:  None. 
+    *-------------------------------------------------------------------*/
     public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         Database db = new Database();
         db.open();
@@ -48,6 +96,24 @@ public class Appt extends HttpServlet {
         this.doGet(req, resp);
     } // end doDelete 
 
+    /*---------------------------------------------------------------------
+    |  Method doPut
+    |
+    |  Purpose:  Updates a specific appointment with the information
+    |            given by the user. Calls doGet to show the updated tuples
+    |            to the user. 
+    |
+    |  Pre-condition:  Said appointment should exists in the database.
+    |
+    |  Post-condition: Said appointment will be updated with the user input. 
+    |
+    |  Parameters:
+    |      req -- HttpServletRequest containing user input. 
+    |      resp -- HttpServletResponse that will be sent back to the
+    |              appt.jsp file. 
+    |   
+    |  Returns:  None. 
+    *-------------------------------------------------------------------*/
     public void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         Database db = new Database();
         db.open();
@@ -103,6 +169,24 @@ public class Appt extends HttpServlet {
         this.doGet(req, resp);
     } // end doPut 
 
+    /*---------------------------------------------------------------------
+    |  Method doPost
+    |
+    |  Purpose:  Inserts a new appointment with the information 
+    |            given by the user. Calls doGet to show the updated tuples
+    |            to the user. 
+    |
+    |  Pre-condition:  None. 
+    |
+    |  Post-condition: The new appointment will be added to the database.  
+    |
+    |  Parameters:
+    |      req -- HttpServletRequest containing user input. 
+    |      resp -- HttpServletResponse that will be sent back to the
+    |              appt.jsp file. 
+    |   
+    |  Returns:  None. 
+    *-------------------------------------------------------------------*/
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         Database db = new Database();
         db.open();
@@ -158,6 +242,22 @@ public class Appt extends HttpServlet {
         this.doGet(req, resp);
     } // end doPost 
 
+    /*---------------------------------------------------------------------
+    |  Method doGet
+    |
+    |  Purpose:  Selects all the current appointments in the database. 
+    |
+    |  Pre-condition:  None. 
+    |
+    |  Post-condition: None.   
+    |
+    |  Parameters: 
+    |      req -- HttpServletRequest containing tuple info.  
+    |      resp -- HttpServletResponse that will be sent back to the
+    |              appt.jsp file. 
+    |   
+    |  Returns:  Returns the query results to the web application. 
+    *-------------------------------------------------------------------*/
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         System.out.println("doGET!!!");
         Database db = new Database();
