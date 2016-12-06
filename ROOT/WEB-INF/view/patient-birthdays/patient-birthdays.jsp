@@ -4,7 +4,7 @@
 <p>View patients with birthdays this month</p>
 <c:choose>
     <c:when test="${numrows == 0}">
-        <p>There are no appointments</p>
+        <p>There are no results.</p>
     </c:when>
     <c:otherwise>
         <table class="border">
