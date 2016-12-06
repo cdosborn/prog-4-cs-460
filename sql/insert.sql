@@ -20,6 +20,9 @@ INSERT INTO cdosborn.servicesupply VALUES (1, 2, 1, 4);
 INSERT INTO cdosborn.servicesupply VALUES (2, 2, 2, 1);
 
 INSERT INTO cdosborn.labservice    VALUES (1, 1, 1);
+INSERT INTO cdosborn.labservice    VALUES (2, 1, 2); 
+INSERT INTO cdosborn.labservice    VALUES (3, 2, 1); 
+INSERT INTO cdosborn.labservice    VALUES (4, 3, 2); 
 
 -- #, patient#, date
 INSERT INTO cdosborn.appt          VALUES (1, 1, SYSDATE + 1);
