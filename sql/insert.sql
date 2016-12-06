@@ -1,5 +1,6 @@
 INSERT INTO cdosborn.lab           VALUES (1, 'Oracle Implants Laboratory');
 INSERT INTO cdosborn.lab           VALUES (2, 'Grant Radiography');
+INSERT INTO cdosborn.lab           VALUES (3, 'Dental Prosthetics'); 
 
 INSERT INTO cdosborn.patient       VALUES (1, 'Connor', 'Osborn', DATE '1993-10-13');
 INSERT INTO cdosborn.patient       VALUES (2, 'Margarita', 'Norzagaray', DATE '1993-01-15');
