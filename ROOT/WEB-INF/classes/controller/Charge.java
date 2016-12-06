@@ -1,3 +1,30 @@
+/*+----------------------------------------------------------------------
+ ||
+ ||  Class Charge
+ ||
+ ||         Author:  Connor Osborn
+ ||
+ ||        Purpose:  This class is the controller for the 'charges'
+ ||                  view.
+ ||
+ ||  Inherits From:  Extends HttpServlet.
+ ||
+ ||     Interfaces:  None.
+ ||
+ |+-----------------------------------------------------------------------
+ ||
+ ||      Constants:  None.
+ ||
+ |+-----------------------------------------------------------------------
+ ||
+ ||   Constructors:  None;
+ ||
+ ||  Class Methods:  doGet(HttpServletRequest req, HttpServletResponse resp)
+ ||                  Returns a HttpServletResponse to charge.jsp.
+ ||
+ ||  Inst. Methods:  None.
+ ||
+ ++-----------------------------------------------------------------------*/
 package controller;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -6,6 +33,23 @@ import java.io.*;
 import java.util.*;
 
 public class Charge extends HttpServlet {
+
+    /*---------------------------------------------------------------------
+    |  Method doGet
+    |
+    |  Purpose:  Selects all 'charges' in the database.
+    |
+    |  Pre-condition:  None.
+    |
+    |  Post-condition: None.
+    |
+    |  Parameters:
+    |      req -- HttpServletRequest containing tuple info.
+    |      resp -- HttpServletResponse that will be sent back to the
+    |              charge.jsp file.
+    |
+    |  Returns:  Returns the query results to the web application.
+    *-------------------------------------------------------------------*/
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         Database db = new Database();
         db.open();
