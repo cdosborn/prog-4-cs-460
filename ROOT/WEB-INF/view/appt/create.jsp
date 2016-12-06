@@ -19,10 +19,6 @@
             <td>time</td>
             <td><input type="text" name="time" placeholder="HH24:MI:SS"/td>
         </tr>
-        <tr>
-            <td>service#</td>
-            <td><input type="number" name="service#" placeholder="123"/td>
-        </tr>
     </tbody>   
 </table>
 <input type="submit" value="Submit">
