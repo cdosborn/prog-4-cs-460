@@ -1,3 +1,32 @@
+/*+----------------------------------------------------------------------
+ ||
+ ||  Class Patient 
+ ||
+ ||         Author:  Connor Osborn
+ ||
+ ||        Purpose:  Controllers class for the 'patient' view. 
+ ||
+ ||  Inherits From:  Extends HttpServlet. 
+ ||
+ ||     Interfaces:  None. 
+ ||
+ |+-----------------------------------------------------------------------
+ ||
+ ||      Constants:  None. 
+ ||
+ |+-----------------------------------------------------------------------
+ ||
+ ||   Constructors:  None; 
+ ||
+ ||  Class Methods:  doDelete(HttpServletRequest req, HttpServletResponse resp) 
+ ||                  doPut(HttpServletRequest req, HttpServletResponse resp)
+ ||                  doPost(HttpServletRequest req, HttpServletResponse resp)
+ ||                  doGet(HttpServletRequest req, HttpServletResponse resp) 
+ ||                  None of the classes return anything. 
+ ||
+ ||  Inst. Methods:  None. 
+ ||
+ ++-----------------------------------------------------------------------*/
 package controller;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -6,6 +35,26 @@ import java.io.*;
 import java.util.*;
 
 public class Patient extends HttpServlet {
+    
+    /*---------------------------------------------------------------------
+    |  Method doDelete
+    |
+    |  Purpose:  Deletes a specific patient with the information (pk) 
+    |            given by the user. Also deletes appointments and visits 
+    |            associated with the patient. Calls doGet to show the 
+    |            updated tuples to the user. 
+    |
+    |  Pre-condition:  Said patient should exists in the database.
+    |
+    |  Post-condition:  Said patient will be deleted from the database. 
+    |
+    |  Parameters:
+    |      req -- HttpServletRequest containing user input. 
+    |      resp -- HttpServletResponse that will be sent back to the
+    |              appt.jsp file. 
+    |   
+    |  Returns:  None. 
+    *-------------------------------------------------------------------*/
     public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         Database db = new Database();
         db.open();
@@ -60,6 +109,24 @@ public class Patient extends HttpServlet {
         this.doGet(req, resp);
     }
 
+    /*---------------------------------------------------------------------
+    |  Method doPut
+    |
+    |  Purpose:  Updates a specific patient with the information
+    |            given by the user. Calls doGet to show the updated tuples
+    |            to the user. 
+    |
+    |  Pre-condition:  Said patient should exists in the database.
+    |
+    |  Post-condition: Said patient will be updated with the user input. 
+    |
+    |  Parameters:
+    |      req -- HttpServletRequest containing user input. 
+    |      resp -- HttpServletResponse that will be sent back to the
+    |              appt.jsp file. 
+    |   
+    |  Returns:  None. 
+    *-------------------------------------------------------------------*/
     public void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         Database db = new Database();
         db.open();
@@ -117,6 +184,24 @@ public class Patient extends HttpServlet {
         this.doGet(req, resp);
     }
 
+    /*---------------------------------------------------------------------
+    |  Method doPost
+    |
+    |  Purpose:  Inserts a new patient with the information 
+    |            given by the user. Calls doGet to show the updated tuples
+    |            to the user. 
+    |
+    |  Pre-condition:  None. 
+    |
+    |  Post-condition: The new patient will be added to the database.  
+    |
+    |  Parameters:
+    |      req -- HttpServletRequest containing user input. 
+    |      resp -- HttpServletResponse that will be sent back to the
+    |              appt.jsp file. 
+    |   
+    |  Returns:  None. 
+    *-------------------------------------------------------------------*/
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         Database db = new Database();
         db.open();
@@ -172,6 +257,22 @@ public class Patient extends HttpServlet {
         this.doGet(req, resp);
     }
 
+    /*---------------------------------------------------------------------
+    |  Method doGet
+    |
+    |  Purpose:  Selects all the current patients in the database. 
+    |
+    |  Pre-condition:  None. 
+    |
+    |  Post-condition: None.   
+    |
+    |  Parameters: 
+    |      req -- HttpServletRequest containing tuple info.  
+    |      resp -- HttpServletResponse that will be sent back to the
+    |              appt.jsp file. 
+    |   
+    |  Returns:  Returns the query results to the web application. 
+    *-------------------------------------------------------------------*/
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         System.out.println("doGET!!!");
         Database db = new Database();

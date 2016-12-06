@@ -1,10 +1,10 @@
 /*+----------------------------------------------------------------------
  ||
- ||  Class Appt 
+ ||  Class  Visit 
  ||
  ||         Author:  Margarita Norzagaray 
  ||
- ||        Purpose:  This class is the controller for the 'appointments' 
+ ||        Purpose:  This class is the controller for the 'visits' 
  ||                  view. 
  ||
  ||  Inherits From:  Extends HttpServlet. 
@@ -35,24 +35,23 @@ import java.sql.*;
 import java.io.*;
 import java.util.*;
 
-public class Appt extends HttpServlet {
+public class Visit extends HttpServlet {
     
     /*---------------------------------------------------------------------
     |  Method doDelete
     |
-    |  Purpose:  Deletes a specific appointment with the information (pk) 
-    |            given by the user. It also deletes visits associated 
-    |            with the appointment. Calls doGet to show the updated 
+    |  Purpose:  Deletes a specific visit with the information (pk) 
+    |            given by the user. Calls doGet to show the updated 
     |            tuples to the user. 
     |
-    |  Pre-condition:  Said appointment should exists in the database.
+    |  Pre-condition:  Said visit should exists in the database.
     |
-    |  Post-condition:  Said appointment will be deleted from the database. 
+    |  Post-condition:  Said visit will be deleted from the database. 
     |
     |  Parameters:
     |      req -- HttpServletRequest containing user input. 
     |      resp -- HttpServletResponse that will be sent back to the
-    |              appt.jsp file. 
+    |              visit.jsp file. 
     |   
     |  Returns:  None. 
     *-------------------------------------------------------------------*/
@@ -61,10 +60,10 @@ public class Appt extends HttpServlet {
         db.open();
 
         // Yield the primary key from the paramaters
-        String ano = req.getParameter("appt#");
+        String vno = req.getParameter("visit#");
 
         // Validate that the pk is not null
-        if (ano == null) {
+        if (vno == null) {
             // Missing parameter, return bad request
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
@@ -72,24 +71,20 @@ public class Appt extends HttpServlet {
 
         // Validate that the pk is a number
         try {
-            Integer.parseInt(ano);
+            Integer.parseInt(vno);
         } catch (NumberFormatException e) {
             // Paramater is not an integer, return bad request
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
 
-        // Delete the visit associated with this appointment 
+        // Delete the visit
         String visitQuery = String.format(
-            "DELETE FROM cdosborn.visit WHERE appt#=%s", ano);
-
-        // Delete the appointment 
-        String apptQuery = String.format(
-            "DELETE FROM cdosborn.appt WHERE appt#=%s", ano); 
+            "DELETE FROM cdosborn.visit WHERE visit#=%s", vno);
 
         // Delete the patient
         try {
-            db.executeMany(visitQuery, apptQuery);
+            db.executeUpdate(visitQuery); ///////////////////////
         } catch (SQLException exc) {
             throw new ServletException("Database error!", exc);
         }
@@ -100,18 +95,18 @@ public class Appt extends HttpServlet {
     /*---------------------------------------------------------------------
     |  Method doPut
     |
-    |  Purpose:  Updates a specific appointment with the information
+    |  Purpose:  Updates a specific visit with the information
     |            given by the user. Calls doGet to show the updated tuples
     |            to the user. 
     |
-    |  Pre-condition:  Said appointment should exists in the database.
+    |  Pre-condition:  Said visit should exists in the database.
     |
-    |  Post-condition: Said appointment will be updated with the user input. 
+    |  Post-condition: Said visit will be updated with the user input. 
     |
     |  Parameters:
     |      req -- HttpServletRequest containing user input. 
     |      resp -- HttpServletResponse that will be sent back to the
-    |              appt.jsp file. 
+    |              visit.jsp file. 
     |   
     |  Returns:  None. 
     *-------------------------------------------------------------------*/
@@ -120,31 +115,29 @@ public class Appt extends HttpServlet {
         db.open();
 
         // Validate that all parameters are present
-        if (req.getParameter("appt#")     == null ||
-            req.getParameter("patient#")  == null ||
-            req.getParameter("date")      == null ||
-            req.getParameter("time")      == null) {
+        if (req.getParameter("visit#")    == null ||
+            req.getParameter("appt#")  == null ||
+            req.getParameter("service#")  == null) {
                 // Missing parameter, return bad request
                 resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 return;
         }
 
+        String vno = req.getParameter("visit#");
         String ano = req.getParameter("appt#");
-        String pno = req.getParameter("patient#");
-        String date = req.getParameter("date");
-        String time = req.getParameter("time");
+        String sno = req.getParameter("service#");
 
         // Define SQL Update's where clause
         String whereClause = String.format("WHERE %s=%s",
-               "appt#", ano);
+               "visit#", vno);
 
         // Define the pairs of column and values to be updated
-        String updatePairs = String.format("%s=%s, %s=TO_DATE('%s %s', 'YYYY/MM/DD HH24:MI:SS')",
-               "patient#", pno,
-               "time", date, time);
+        String updatePairs = String.format("%s=%s, %s=%s",
+               "appt#", ano,
+               "service#", sno);
 
         // Define the entire update query
-        String query = String.format("UPDATE cdosborn.appt SET %s %s",
+        String query = String.format("UPDATE cdosborn.visit SET %s %s",
                 updatePairs,
                 whereClause);
 
@@ -157,7 +150,7 @@ public class Appt extends HttpServlet {
         try {
             updated = db.executeUpdate(query);
             if (updated == 0) {
-                req.setAttribute("redirect_url", "/appt.jsp");
+                req.setAttribute("redirect_url", "/visit.jsp");
                 req.getRequestDispatcher("/WEB-INF/view/error/no_record.jsp").forward(req, resp);
                 return;
             }
@@ -173,18 +166,17 @@ public class Appt extends HttpServlet {
     /*---------------------------------------------------------------------
     |  Method doPost
     |
-    |  Purpose:  Inserts a new appointment with the information 
-    |            given by the user. Calls doGet to show the updated tuples
-    |            to the user. 
+    |  Purpose:  Inserts a new visit with the information given by the 
+    |            user. Calls doGet to show the updated tuples to the user. 
     |
     |  Pre-condition:  None. 
     |
-    |  Post-condition: The new appointment will be added to the database.  
+    |  Post-condition: The new visit will be added to the database.  
     |
     |  Parameters:
     |      req -- HttpServletRequest containing user input. 
     |      resp -- HttpServletResponse that will be sent back to the
-    |              appt.jsp file. 
+    |              visit.jsp file. 
     |   
     |  Returns:  None. 
     *-------------------------------------------------------------------*/
@@ -207,30 +199,28 @@ public class Appt extends HttpServlet {
         }
 
         // Validate that all parameters are present
-        if (req.getParameter("appt#")     == null ||
-            req.getParameter("patient#")  == null ||
-            req.getParameter("date")      == null ||
-            req.getParameter("time")      == null) {
+        if (req.getParameter("visit#")     == null ||
+            req.getParameter("appt#")  == null ||
+            req.getParameter("service#")      == null) {
                 // Missing parameter, return bad request
                 resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 return;
         }
 
+        String vno = req.getParameter("visit#");
         String ano = req.getParameter("appt#");
-        String pno = req.getParameter("patient#");
-        String date = req.getParameter("date");
-        String time = req.getParameter("time");
+        String sno = req.getParameter("service#");
 
         // Insert row into table
-        String query = String.format("INSERT INTO cdosborn.appt VALUES (%s, %s, TO_DATE('%s %s', 'YYYY/MM/DD HH24:MI:SS'))",
-                ano, pno, date, time);
+        String query = String.format("INSERT INTO cdosborn.visit VALUES (%s, %s, %s)",
+                vno, ano, sno);
 
         try {
             db.executeUpdate(query);
         } catch (SQLException exc) {
             // Database unique constraint violation
             if (exc.getErrorCode() == 1) {
-                req.setAttribute("redirect_url", "/appt.jsp");
+                req.setAttribute("redirect_url", "/visit.jsp");
                 req.getRequestDispatcher("/WEB-INF/view/error/duplicate_key_error.jsp").forward(req, resp);
                 return;
             } else {
@@ -246,7 +236,7 @@ public class Appt extends HttpServlet {
     /*---------------------------------------------------------------------
     |  Method doGet
     |
-    |  Purpose:  Selects all the current appointments in the database. 
+    |  Purpose:  Selects all the current visits in the database. 
     |
     |  Pre-condition:  None. 
     |
@@ -255,7 +245,7 @@ public class Appt extends HttpServlet {
     |  Parameters: 
     |      req -- HttpServletRequest containing tuple info.  
     |      resp -- HttpServletResponse that will be sent back to the
-    |              appt.jsp file. 
+    |              visit.jsp file. 
     |   
     |  Returns:  Returns the query results to the web application. 
     *-------------------------------------------------------------------*/
@@ -264,12 +254,19 @@ public class Appt extends HttpServlet {
         Database db = new Database();
         db.open();
         
-        String query = "SELECT * FROM cdosborn.appt";
+        String query = "SELECT visit#, a.appt#, p.patient#, fname AS \"first name\", lname AS \"last name\", " +
+            "name AS service, time AS \"date and time\" " +
+            "FROM cdosborn.visit v, cdosborn.appt a, cdosborn.service s, cdosborn.patient p " +
+            "WHERE v.appt#=a.appt# AND v.service#=s.service# AND a.patient#=p.patient#";
         List<List<String>> data = new ArrayList<>();
         List<String> cols = Arrays.asList(new String[] {
+            "visit#",
             "appt#",
-            "patient#",
-            "time"
+            "patient#", 
+            "first name", 
+            "last name",
+            "service",
+            "date and time"
         });
         
         List<String> row;
@@ -290,6 +287,6 @@ public class Appt extends HttpServlet {
         req.setAttribute("cols", cols);
         req.setAttribute("data", data);
         req.setAttribute("numrows", data.size());
-        req.getRequestDispatcher("/WEB-INF/view/appt/appt.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/visit/visit.jsp").forward(req, resp);
     } // end doGet 
 }

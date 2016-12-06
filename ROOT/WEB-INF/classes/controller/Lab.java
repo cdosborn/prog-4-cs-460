@@ -1,11 +1,10 @@
 /*+----------------------------------------------------------------------
  ||
- ||  Class  MostUsedSupplies
+ ||  Class Lab
  ||
- ||         Author:  Connor Osborn 
+ ||         Author:  Margarita Norzagaray 
  ||
- ||        Purpose:  Controller class for the 4rd query: 
- ||                     'Most used supplies'. 
+ ||        Purpose:  Controller class for the 'lab' view.  
  ||
  ||  Inherits From:  Extends HttpServlet. 
  ||
@@ -19,9 +18,9 @@
  ||
  ||   Constructors:  None; 
  ||
- ||  Class Methods:  doDelete(HttpServletRequest req, HttpServletResponse resp) 
- ||                  Returns a HttpServletResponse to most-used-supplies.jsp. 
- ||
+ ||  Class Methods:  doGet(HttpServletRequest req, HttpServletResponse resp) 
+ ||                  Returns a HttpServletResponse to lab.jsp.
+ || 
  ||  Inst. Methods:  None. 
  ||
  ++-----------------------------------------------------------------------*/
@@ -32,12 +31,13 @@ import java.sql.*;
 import java.io.*;
 import java.util.*;
 
-public class MostUsedSupplies extends HttpServlet {
+public class Lab extends HttpServlet {
     
     /*---------------------------------------------------------------------
     |  Method doGet
     |
-    |  Purpose:  Gets the response to the query. 
+    |  Purpose:  Selects all 'labs' in the database and displays the 
+    |            services each lab offers. 
     |
     |  Pre-condition:  None. 
     |
@@ -46,36 +46,27 @@ public class MostUsedSupplies extends HttpServlet {
     |  Parameters: 
     |      req -- HttpServletRequest containing tuple info.  
     |      resp -- HttpServletResponse that will be sent back to the
-    |              most-used-supplies.jsp file. 
+    |              charge.jsp file. 
     |   
     |  Returns:  Returns the query results to the web application. 
     *-------------------------------------------------------------------*/
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        System.out.println("doGET!!!");
         Database db = new Database();
         db.open();
-
+        
+        String query = "SELECT l.lab#, l.name, s.name AS service FROM cdosborn.lab l, cdosborn.service s " +
+            "WHERE EXISTS (SELECT * FROM cdosborn.labservice lb WHERE l.lab#=lb.lab# AND s.service#=lb.service#)";
         List<List<String>> data = new ArrayList<>();
         List<String> cols = Arrays.asList(new String[] {
-            "supply#",
+            "lab#",
             "name",
-            "total",
+            "service"
         });
-
-        // Query supplies most used in treating patients
-        String query =
-            " SELECT supply.supply#, supply.name, SUM(COALESCE(servicesupply.quantity,0)) total" +
-            " FROM" +
-            "     visit" +
-            "     INNER JOIN" +
-            "     servicesupply ON visit.service# = servicesupply.service#" +
-            "     RIGHT OUTER JOIN" +
-            "     supply ON servicesupply.supply# = supply.supply#" +
-            " GROUP BY supply.supply#, supply.name, supply.supply#" +
-            " ORDER BY total DESC";
-
+        
+        List<String> row;
         try {
-            List<String> row;
-            ResultSet rs = db.execute(query);
+            ResultSet rs  = db.execute(query);
             while (rs.next()) {
                 row = new ArrayList<>();
                 for (String col : cols) {
@@ -88,10 +79,9 @@ public class MostUsedSupplies extends HttpServlet {
         } finally {
             db.close();
         }
-
         req.setAttribute("cols", cols);
         req.setAttribute("data", data);
         req.setAttribute("numrows", data.size());
-        req.getRequestDispatcher("/WEB-INF/view/most-used-supplies/most-used-supplies.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/lab/lab.jsp").forward(req, resp);
     }
 }
