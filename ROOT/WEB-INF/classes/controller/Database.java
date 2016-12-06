@@ -1,3 +1,39 @@
+/*+----------------------------------------------------------------------
+ ||
+ ||  Class Database
+ ||
+ ||         Author:  Connor Osborn
+ ||
+ ||        Purpose:  Controller class that connects to the database.
+ ||
+ ||  Inherits From:  None.
+ ||
+ ||     Interfaces:  None.
+ ||
+ |+-----------------------------------------------------------------------
+ ||
+ ||      Constants:  None.
+ ||
+ |+-----------------------------------------------------------------------
+ ||
+ ||   Constructors:  None;
+ ||
+ ||  Class Methods:  executeUpdate(String query)
+ ||                     -- returns: int
+ ||                  execute(String query)
+ ||                     -- returns: ResultSet
+ ||                  createStatement()
+ ||                     -- returns: Statements
+ ||                  executeMany(String... queries)
+ ||                     -- returns: nothing.
+ ||                  open()
+ ||                     -- returns: nothing
+ ||                  close()
+ ||                     -- returns: nothing
+ ||
+ ||  Inst. Methods:  Same as above.
+ ||
+ ++-----------------------------------------------------------------------*/
 package controller;
 import java.io.*;
 import java.sql.Connection;
@@ -18,6 +54,20 @@ public class Database {
      */
     private List<Statement> statements;
 
+    /*---------------------------------------------------------------------
+    |  Method executeUpdate
+    |
+    |  Purpose:  Executes an update with the given query.
+    |
+    |  Pre-condition:  None.
+    |
+    |  Post-condition: None.
+    |
+    |  Parameters:
+    |      query -- String representing the query to be executed.
+    |
+    |  Returns:  The number (int) of rows affected.
+    *-------------------------------------------------------------------*/
     public int executeUpdate(String query) throws SQLException {
         Statement stmt = this.createStatement();
 
@@ -25,18 +75,61 @@ public class Database {
         return stmt.executeUpdate(query);
     }
 
+    /*---------------------------------------------------------------------
+    |  Method execute
+    |
+    |  Purpose:  Executes a given query.
+    |
+    |  Pre-condition:  None.
+    |
+    |  Post-condition: None.
+    |
+    |  Parameters:
+    |      query -- String representing the query to be executed.
+    |
+    |  Returns:  The ResultSet of the given query.
+    *-------------------------------------------------------------------*/
     public ResultSet execute(String query) throws SQLException {
         Statement stmt = this.createStatement();
 
         return stmt.executeQuery(query);
     }
 
+    /*---------------------------------------------------------------------
+    |  Method createStatement
+    |
+    |  Purpose:  Executes a given query.
+    |
+    |  Pre-condition:  None.
+    |
+    |  Post-condition: None.
+    |
+    |  Parameters:
+    |      query -- String representing the query to be executed.
+    |
+    |  Returns:  The ResultSet of the given query.
+    *-------------------------------------------------------------------*/
     private Statement createStatement() throws SQLException {
         Statement stmt = connection_.createStatement();
         statements.add(stmt);
         return stmt;
     }
 
+    /*---------------------------------------------------------------------
+    |  Method executeMany
+    |
+    |  Purpose:  Executes more than one query and commits the changes
+    |            to the database.
+    |
+    |  Pre-condition:  None.
+    |
+    |  Post-condition: None.
+    |
+    |  Parameters:
+    |      query -- String representing the query to be executed.
+    |
+    |  Returns:  None.
+    *-------------------------------------------------------------------*/
     public void executeMany(String... queries) throws SQLException {
         Statement stmt = this.createStatement();
         try {
@@ -59,6 +152,19 @@ public class Database {
         connection_.commit();
     }
 
+    /*---------------------------------------------------------------------
+    |  Method open
+    |
+    |  Purpose:  Opens a connection to the database.
+    |
+    |  Pre-condition:  None.
+    |
+    |  Post-condition:  None.
+    |
+    |  Parameters:  None.
+    |
+    |  Returns:  Nothing.
+    *-------------------------------------------------------------------*/
     public void open() {
         String username = "cdosborn";
         String password = "a1211";
@@ -80,9 +186,19 @@ public class Database {
 	}
     }
 
-    /**
-     * Closes the DBMS connection that was opened by the open call.
-     */
+    /*---------------------------------------------------------------------
+    |  Method close
+    |
+    |  Purpose:  Closes the DBMS connection that was opened by the open call.
+    |
+    |  Pre-condition:  None.
+    |
+    |  Post-condition:  None.
+    |
+    |  Parameters:  None.
+    |
+    |  Returns:  Nothing.
+    *-------------------------------------------------------------------*/
     public void close() {
         try {
             // Try closing each open statement

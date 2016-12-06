@@ -1,11 +1,11 @@
 /*+----------------------------------------------------------------------
  ||
- ||  Class DailyAppts
+ ||  Class Sevices
  ||
- ||         Author:  Connor Osborn
+ ||         Author:  Margarita Norzagaray
  ||
- ||        Purpose:  Controller class for the 3rd query:
- ||                     'Today's appointments'.
+ ||        Purpose:  This class is the controller for the 'services'
+ ||                  view.
  ||
  ||  Inherits From:  Extends HttpServlet.
  ||
@@ -19,8 +19,8 @@
  ||
  ||   Constructors:  None;
  ||
- ||  Class Methods:  doDelete(HttpServletRequest req, HttpServletResponse resp)
- ||                  Returns a HttpServletResponse to daily-appts.jsp.
+ ||  Class Methods:  doGet(HttpServletRequest req, HttpServletResponse resp)
+ ||                  Returns a HttpServletResponse to service.jsp.
  ||
  ||  Inst. Methods:  None.
  ||
@@ -32,12 +32,13 @@ import java.sql.*;
 import java.io.*;
 import java.util.*;
 
-public class DailyAppts extends HttpServlet {
+public class Service extends HttpServlet {
 
-    /*---------------------------------------------------------------------
+     /*---------------------------------------------------------------------
     |  Method doGet
     |
-    |  Purpose:  Gets the response to the query.
+    |  Purpose:  Selects all 'services' provided by the office and
+    |            laboratires.
     |
     |  Pre-condition:  None.
     |
@@ -46,30 +47,25 @@ public class DailyAppts extends HttpServlet {
     |  Parameters:
     |      req -- HttpServletRequest containing tuple info.
     |      resp -- HttpServletResponse that will be sent back to the
-    |              daily-appts.jsp file.
+    |              charge.jsp file.
     |
     |  Returns:  Returns the query results to the web application.
     *-------------------------------------------------------------------*/
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        System.out.println("doGET!!!");
         Database db = new Database();
         db.open();
 
+        String query = "SELECT service#, name FROM cdosborn.service";
         List<List<String>> data = new ArrayList<>();
         List<String> cols = Arrays.asList(new String[] {
-            "appt#",
-            "patient#",
-            "time",
+            "service#",
+            "name"
         });
 
-        // Query for table of today's appts
-        String query =
-            " SELECT *" +
-            " FROM appt" +
-            " WHERE TRUNC(time, 'DD') = TRUNC(sysdate, 'DD')";
-
+        List<String> row;
         try {
-            List<String> row;
-            ResultSet rs = db.execute(query);
+            ResultSet rs  = db.execute(query);
             while (rs.next()) {
                 row = new ArrayList<>();
                 for (String col : cols) {
@@ -82,10 +78,9 @@ public class DailyAppts extends HttpServlet {
         } finally {
             db.close();
         }
-
         req.setAttribute("cols", cols);
         req.setAttribute("data", data);
         req.setAttribute("numrows", data.size());
-        req.getRequestDispatcher("/WEB-INF/view/daily-appts/daily-appts.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/visit/service.jsp").forward(req, resp);
     }
 }

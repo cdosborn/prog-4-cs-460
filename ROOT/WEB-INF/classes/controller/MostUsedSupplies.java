@@ -1,3 +1,30 @@
+/*+----------------------------------------------------------------------
+ ||
+ ||  Class  MostUsedSupplies
+ ||
+ ||         Author:  Connor Osborn
+ ||
+ ||        Purpose:  Controller class for the 4rd query:
+ ||                     'Most used supplies'.
+ ||
+ ||  Inherits From:  Extends HttpServlet.
+ ||
+ ||     Interfaces:  None.
+ ||
+ |+-----------------------------------------------------------------------
+ ||
+ ||      Constants:  None.
+ ||
+ |+-----------------------------------------------------------------------
+ ||
+ ||   Constructors:  None;
+ ||
+ ||  Class Methods:  doDelete(HttpServletRequest req, HttpServletResponse resp)
+ ||                  Returns a HttpServletResponse to most-used-supplies.jsp.
+ ||
+ ||  Inst. Methods:  None.
+ ||
+ ++-----------------------------------------------------------------------*/
 package controller;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -6,6 +33,23 @@ import java.io.*;
 import java.util.*;
 
 public class MostUsedSupplies extends HttpServlet {
+
+    /*---------------------------------------------------------------------
+    |  Method doGet
+    |
+    |  Purpose:  Gets the response to the query.
+    |
+    |  Pre-condition:  None.
+    |
+    |  Post-condition: None.
+    |
+    |  Parameters:
+    |      req -- HttpServletRequest containing tuple info.
+    |      resp -- HttpServletResponse that will be sent back to the
+    |              most-used-supplies.jsp file.
+    |
+    |  Returns:  Returns the query results to the web application.
+    *-------------------------------------------------------------------*/
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         Database db = new Database();
         db.open();

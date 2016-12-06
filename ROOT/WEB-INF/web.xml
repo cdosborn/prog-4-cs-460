@@ -34,7 +34,7 @@
   </servlet>
   <servlet-mapping>
       <servlet-name>XActionsPerPatient</servlet-name>
-      <url-pattern>/queries/xaction-per-patient.jsp</url-pattern>
+      <url-pattern>/query/xaction-per-patient.jsp</url-pattern>
   </servlet-mapping>
 
   <servlet>
@@ -43,7 +43,7 @@
   </servlet>
   <servlet-mapping>
       <servlet-name>PatientsNoShow</servlet-name>
-      <url-pattern>/queries/patients-no-show.jsp</url-pattern>
+      <url-pattern>/query/patients-no-show.jsp</url-pattern>
   </servlet-mapping>
 
   <servlet>
@@ -52,7 +52,7 @@
   </servlet>
   <servlet-mapping>
       <servlet-name>DailyAppts</servlet-name>
-      <url-pattern>/queries/todays-appts.jsp</url-pattern>
+      <url-pattern>/query/todays-appts.jsp</url-pattern>
   </servlet-mapping>
 
   <servlet>
@@ -61,7 +61,7 @@
   </servlet>
   <servlet-mapping>
       <servlet-name>MostUsedSupplies</servlet-name>
-      <url-pattern>/queries/most-used-supplies.jsp</url-pattern>
+      <url-pattern>/query/most-used-supplies.jsp</url-pattern>
   </servlet-mapping>
 
   <servlet>
@@ -70,7 +70,7 @@
   </servlet>
   <servlet-mapping>
       <servlet-name>PatientBirthdays</servlet-name>
-      <url-pattern>/queries/patient-birthdays.jsp</url-pattern>
+      <url-pattern>/query/patient-birthdays.jsp</url-pattern>
   </servlet-mapping>
 
   <servlet>
