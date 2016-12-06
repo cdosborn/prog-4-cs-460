@@ -117,7 +117,7 @@
     <servlet-name>ErrorNoRecord</servlet-name>
     <url-pattern>/error/no_record.jsp</url-pattern>
   </servlet-mapping>
-    
+
   <!-- APPOINTMENTS -->
   <servlet>
     <servlet-name>Appointments</servlet-name>
@@ -127,7 +127,7 @@
     <servlet-name>Appointments</servlet-name>
     <url-pattern>/appt.jsp</url-pattern>
   </servlet-mapping>
-  
+
   <servlet>
       <servlet-name>CreateAppointment</servlet-name>
       <jsp-file>/WEB-INF/view/appt/create.jsp</jsp-file>
@@ -135,8 +135,8 @@
   <servlet-mapping>
       <servlet-name>CreateAppointment</servlet-name>
       <url-pattern>/appt/create.jsp</url-pattern>
-  </servlet-mapping> 
-    
+  </servlet-mapping>
+
   <servlet>
       <servlet-name>EditAppointment</servlet-name>
       <jsp-file>/WEB-INF/view/appt/edit.jsp</jsp-file>
@@ -144,8 +144,8 @@
   <servlet-mapping>
     <servlet-name>EditAppointment</servlet-name>
     <url-pattern>/appt/edit.jsp</url-pattern>
-  </servlet-mapping>  
- 
+  </servlet-mapping>
+
   <servlet>
       <servlet-name>DeleteAppointment</servlet-name>
       <jsp-file>/WEB-INF/view/appt/delete.jsp</jsp-file>
@@ -154,7 +154,7 @@
       <servlet-name>DeleteAppointment</servlet-name>
       <url-pattern>/appt/delete.jsp</url-pattern>
   </servlet-mapping>
-    
+
   <!-- VISITS -->
   <servlet>
     <servlet-name>Visits</servlet-name>
@@ -164,7 +164,7 @@
     <servlet-name>Visits</servlet-name>
     <url-pattern>/visit.jsp</url-pattern>
   </servlet-mapping>
-  
+
   <servlet>
       <servlet-name>CreateVisit</servlet-name>
       <jsp-file>/WEB-INF/view/visit/create.jsp</jsp-file>
@@ -172,8 +172,8 @@
   <servlet-mapping>
       <servlet-name>CreateVisit</servlet-name>
       <url-pattern>/visit/create.jsp</url-pattern>
-  </servlet-mapping> 
-    
+  </servlet-mapping>
+
   <servlet>
       <servlet-name>EditVisit</servlet-name>
       <jsp-file>/WEB-INF/view/visit/edit.jsp</jsp-file>
@@ -181,8 +181,8 @@
   <servlet-mapping>
     <servlet-name>EditVisit</servlet-name>
     <url-pattern>/visit/edit.jsp</url-pattern>
-  </servlet-mapping>  
- 
+  </servlet-mapping>
+
   <servlet>
       <servlet-name>DeleteVisit</servlet-name>
       <jsp-file>/WEB-INF/view/visit/delete.jsp</jsp-file>
@@ -191,5 +191,15 @@
       <servlet-name>DeleteVisit</servlet-name>
       <url-pattern>/visit/delete.jsp</url-pattern>
   </servlet-mapping>
-  
+
+  <!-- SERVICES -->
+  <servlet>
+    <servlet-name>Services</servlet-name>
+    <servlet-class>controller.Service</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Services</servlet-name>
+    <url-pattern>/visit/service.jsp</url-pattern>
+  </servlet-mapping>
+
 </web-app>
