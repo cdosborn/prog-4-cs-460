@@ -118,5 +118,42 @@
       <servlet-name>DeleteAppointment</servlet-name>
       <url-pattern>/appt/delete.jsp</url-pattern>
   </servlet-mapping>
+    
+  <!-- VISITS -->
+  <servlet>
+    <servlet-name>Visits</servlet-name>
+    <servlet-class>controller.Visit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Visits</servlet-name>
+    <url-pattern>/visit.jsp</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+      <servlet-name>CreateVisit</servlet-name>
+      <jsp-file>/WEB-INF/view/visit/create.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>CreateVisit</servlet-name>
+      <url-pattern>/visit/create.jsp</url-pattern>
+  </servlet-mapping> 
+    
+  <servlet>
+      <servlet-name>EditVisit</servlet-name>
+      <jsp-file>/WEB-INF/view/visit/edit.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditVisit</servlet-name>
+    <url-pattern>/visit/edit.jsp</url-pattern>
+  </servlet-mapping>  
+ 
+  <servlet>
+      <servlet-name>DeleteVisit</servlet-name>
+      <jsp-file>/WEB-INF/view/visit/delete.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>DeleteVisit</servlet-name>
+      <url-pattern>/visit/delete.jsp</url-pattern>
+  </servlet-mapping>
   
 </web-app>
