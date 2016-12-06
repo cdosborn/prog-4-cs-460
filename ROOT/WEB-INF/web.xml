@@ -202,4 +202,14 @@
     <url-pattern>/visit/service.jsp</url-pattern>
   </servlet-mapping>
 
+  <!-- LABS -->
+  <servlet>
+    <servlet-name>Labs</servlet-name>
+    <servlet-class>controller.Lab</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Labs</servlet-name>
+    <url-pattern>/lab.jsp</url-pattern>
+  </servlet-mapping>
+
 </web-app>
