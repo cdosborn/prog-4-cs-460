@@ -55,9 +55,16 @@ public class Lab extends HttpServlet {
         Database db = new Database();
         db.open();
 
-        String query = "SELECT l.lab#, l.name, s.name AS service FROM cdosborn.lab l, cdosborn.service s " +
-            "WHERE EXISTS (SELECT * FROM cdosborn.labservice lb WHERE l.lab#=lb.lab# AND s.service#=lb.service#) " +
-            "ORDER BY l.lab#";
+        String query =
+            " SELECT lab.lab#, lab.name, service.name service" +
+            " FROM" +
+            " labservice " +
+            " INNER JOIN" +
+            "     service on labservice.service#=service.service#" +
+            " RIGHT OUTER JOIN" +
+            "     lab on lab.lab# = labservice.lab#" +
+            " ORDER BY lab.lab#";
+
         List<List<String>> data = new ArrayList<>();
         List<String> cols = Arrays.asList(new String[] {
             "lab#",
