@@ -70,7 +70,7 @@ INSERT INTO cdosborn.appt          VALUES (1, 1, SYSDATE + 1);
 INSERT INTO cdosborn.appt          VALUES (2, 2, SYSDATE + 1);
 INSERT INTO cdosborn.appt          VALUES (3, 3, SYSDATE - 1);
 INSERT INTO cdosborn.appt          VALUES (4, 4, SYSDATE);
-INSERT INTO cdosborn.appt          VALUES (5, 5, SYSDATE - 30); 
+INSERT INTO cdosborn.appt          VALUES (5, 5, SYSDATE - 30);
 INSERT INTO cdosborn.appt          VALUES (6, 14, SYSDATE);
 INSERT INTO cdosborn.appt          VALUES (7, 12, SYSDATE - 2);
 INSERT INTO cdosborn.appt          VALUES (8, 17, SYSDATE - 22);
@@ -90,6 +90,7 @@ INSERT INTO cdosborn.appt          VALUES (21, 7, SYSDATE + 6 );
 INSERT INTO cdosborn.appt          VALUES (22, 9, SYSDATE + 5);
 INSERT INTO cdosborn.appt          VALUES (23, 10, SYSDATE + 7);
 INSERT INTO cdosborn.appt          VALUES (24, 16, SYSDATE + 6);
+INSERT INTO cdosborn.appt          VALUES (25, 1, SYSDATE - 6);
 
 -- #, appt#, service#
 INSERT INTO cdosborn.visit         VALUES (1, 3, 1);
