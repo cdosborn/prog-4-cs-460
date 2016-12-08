@@ -211,5 +211,15 @@
     <servlet-name>Labs</servlet-name>
     <url-pattern>/lab.jsp</url-pattern>
   </servlet-mapping>
+    
+  <!-- PAYMENTS -->
+  <servlet>
+    <servlet-name>Payment</servlet-name>
+    <servlet-class>controller.Payment</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Payment</servlet-name>
+    <url-pattern>/payment.jsp</url-pattern>
+  </servlet-mapping>
 
 </web-app>

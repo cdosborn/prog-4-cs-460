@@ -254,14 +254,13 @@ public class Visit extends HttpServlet {
         Database db = new Database();
         db.open();
 
-        String query = "SELECT visit#, a.appt#, p.patient#, fname AS \"first name\", lname AS \"last name\", " +
+        String query = "SELECT a.patient# AS patient#, fname AS \"first name\", lname AS \"last name\", " +
             "name AS service, time AS \"date and time\" " +
             "FROM cdosborn.visit v, cdosborn.appt a, cdosborn.service s, cdosborn.patient p " +
-            "WHERE v.appt#=a.appt# AND v.service#=s.service# AND a.patient#=p.patient#";
+            "WHERE v.appt#=a.appt# AND v.service#=s.service# AND a.patient#=p.patient# " + 
+            "ORDER BY visit#";
         List<List<String>> data = new ArrayList<>();
         List<String> cols = Arrays.asList(new String[] {
-            "visit#",
-            "appt#",
             "patient#",
             "first name",
             "last name",
@@ -270,6 +269,7 @@ public class Visit extends HttpServlet {
         });
 
         List<String> row;
+        String payment; 
         try {
             ResultSet rs  = db.execute(query);
             while (rs.next()) {
@@ -277,6 +277,8 @@ public class Visit extends HttpServlet {
                 for (String col : cols) {
                     row.add(rs.getString(col));
                 }
+                payment = String.format("<a href=\"payment.jsp?patient=%s\">Make a payment</a>", rs.getString("patient#")); 
+                row.add(payment);
                 data.add(row);
             }
         } catch (SQLException exc) {
