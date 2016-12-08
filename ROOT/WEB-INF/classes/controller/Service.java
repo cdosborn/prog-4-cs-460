@@ -56,20 +56,25 @@ public class Service extends HttpServlet {
         db.open();
 
         String query =
-            " SELECT service.service# service#, lab.name lab, service.name service" +
+            " SELECT service.service#, service.name service, 'Office' location" +
             " FROM" +
-            " labservice " +
-            " INNER JOIN" +
-            "     service on labservice.service#=service.service#" +
-            " RIGHT OUTER JOIN" +
-            "     lab on lab.lab# = labservice.lab#" +
-            " ORDER BY service.service#";
+            "     procedure, service" +
+            " WHERE" +
+            "     procedure.service#=service.service#" +
+            " UNION" +
+            " SELECT service.service#, service.name service, lab.name location" +
+            " FROM" +
+            "     labservice, service, lab" +
+            " WHERE labservice.service#=service.service#" +
+            "   AND lab.lab# = labservice.lab#" +
+            " ORDER BY service#";
+
 
         List<List<String>> data = new ArrayList<>();
         List<String> cols = Arrays.asList(new String[] {
-            "service#", 
-            "lab",
-            "service"
+            "service#",
+            "service",
+            "location"
         });
 
         List<String> row;

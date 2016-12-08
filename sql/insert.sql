@@ -14,15 +14,18 @@ INSERT INTO cdosborn.supply        VALUES (3, 'Fluoride 1L', 8.00);
 
 INSERT INTO cdosborn.service       VALUES (1, 'Root Canal', 30.00);
 INSERT INTO cdosborn.service       VALUES (2, 'Oral Exam', 30.00);
+INSERT INTO cdosborn.service       VALUES (3, 'Teeth Cleaning', 25.00);
 
 -- #, service#, supply#, quantity
 INSERT INTO cdosborn.servicesupply VALUES (1, 2, 1, 4);
 INSERT INTO cdosborn.servicesupply VALUES (2, 2, 2, 1);
 
 INSERT INTO cdosborn.labservice    VALUES (1, 1, 1);
-INSERT INTO cdosborn.labservice    VALUES (2, 1, 2); 
-INSERT INTO cdosborn.labservice    VALUES (3, 2, 1); 
-INSERT INTO cdosborn.labservice    VALUES (4, 3, 2); 
+INSERT INTO cdosborn.labservice    VALUES (2, 1, 2);
+INSERT INTO cdosborn.labservice    VALUES (3, 2, 1);
+INSERT INTO cdosborn.labservice    VALUES (4, 3, 2);
+
+INSERT INTO cdosborn.procedure    VALUES (3);
 
 -- #, patient#, date
 INSERT INTO cdosborn.appt          VALUES (1, 1, SYSDATE + 1);
