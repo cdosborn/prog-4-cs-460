@@ -1,13 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/partials/header.jsp"></jsp:include>
 <h2><a href="/">home</a>&nbsp;/ services</h2>
+<p>
+Services available. The location column indicates where each service is offered.
+</p>
 
 <c:choose>
     <c:when test="${numrows == 0}">
         <p>The table has no results.</p>
     </c:when>
     <c:otherwise>
-        <p>Services available.</p>
         <table class="border">
             <thead>
                 <tr>
