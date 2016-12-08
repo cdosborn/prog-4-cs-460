@@ -59,6 +59,9 @@ INSERT INTO cdosborn.servicesupply VALUES (6, 6, 6, 5);
 INSERT INTO cdosborn.labservice    VALUES (1, 1, 3);
 INSERT INTO cdosborn.labservice    VALUES (2, 2, 1); 
 INSERT INTO cdosborn.labservice    VALUES (3, 3, 4); 
+INSERT INTO cdosborn.labservice    VALUES (4, 1, 1); 
+INSERT INTO cdosborn.labservice    VALUES (5, 2, 3); 
+INSERT INTO cdosborn.labservice    VALUES (6, 2, 4); 
 
 -- labsupply#, lab#, supply#, qty
 INSERT INTO cdosborn.labsupply     VALUES (1, 1, 5, 2);
@@ -66,8 +69,8 @@ INSERT INTO cdosborn.labsupply     VALUES (2, 2, 4, 7);
 INSERT INTO cdosborn.labsupply     VALUES (3, 3, 1, 4); 
 
 -- #, patient#, date
-INSERT INTO cdosborn.appt          VALUES (1, 1, SYSDATE + 1);
-INSERT INTO cdosborn.appt          VALUES (2, 2, SYSDATE + 1);
+INSERT INTO cdosborn.appt          VALUES (1, 1, SYSDATE);
+INSERT INTO cdosborn.appt          VALUES (2, 2, SYSDATE);
 INSERT INTO cdosborn.appt          VALUES (3, 3, SYSDATE - 1);
 INSERT INTO cdosborn.appt          VALUES (4, 4, SYSDATE);
 INSERT INTO cdosborn.appt          VALUES (5, 5, SYSDATE - 30); 
@@ -92,17 +95,19 @@ INSERT INTO cdosborn.appt          VALUES (23, 10, SYSDATE + 7);
 INSERT INTO cdosborn.appt          VALUES (24, 16, SYSDATE + 6);
 
 -- #, appt#, service#
-INSERT INTO cdosborn.visit         VALUES (1, 3, 1);
-INSERT INTO cdosborn.visit         VALUES (2, 4, 6); 
-INSERT INTO cdosborn.visit         VALUES (3, 5, 3); 
-INSERT INTO cdosborn.visit         VALUES (4, 6, 2); 
-INSERT INTO cdosborn.visit         VALUES (5, 7, 4); 
-INSERT INTO cdosborn.visit         VALUES (6, 8, 5); 
-INSERT INTO cdosborn.visit         VALUES (7, 9, 3); 
-INSERT INTO cdosborn.visit         VALUES (8, 10, 2); 
-INSERT INTO cdosborn.visit         VALUES (9, 11, 4); 
-INSERT INTO cdosborn.visit         VALUES (10, 12, 3); 
-INSERT INTO cdosborn.visit         VALUES (11, 13, 5); 
+INSERT INTO cdosborn.visit         VALUES (1, 1, 1); 
+INSERT INTO cdosborn.visit         VALUES (2, 2, 2); 
+INSERT INTO cdosborn.visit         VALUES (3, 3, 1);
+INSERT INTO cdosborn.visit         VALUES (4, 4, 6); 
+INSERT INTO cdosborn.visit         VALUES (5, 5, 3); 
+INSERT INTO cdosborn.visit         VALUES (6, 6, 2); 
+INSERT INTO cdosborn.visit         VALUES (7, 7, 4); 
+INSERT INTO cdosborn.visit         VALUES (8, 8, 5); 
+INSERT INTO cdosborn.visit         VALUES (9, 9, 3); 
+INSERT INTO cdosborn.visit         VALUES (10, 10, 2); 
+INSERT INTO cdosborn.visit         VALUES (11, 11, 4); 
+INSERT INTO cdosborn.visit         VALUES (12, 12, 3); 
+INSERT INTO cdosborn.visit         VALUES (13, 13, 5); 
 
 -- payment#, patient#, time, amount,
 INSERT INTO cdosborn.payment       VALUES (1, 3, SYSDATE - 1, 30.00);
