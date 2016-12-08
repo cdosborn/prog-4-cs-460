@@ -85,3 +85,15 @@ CREATE TABLE cdosborn.visit (
     FOREIGN KEY (service#) REFERENCES cdosborn.service (service#),
     CONSTRAINT unique_visit UNIQUE (appt#, service#)
 );
+
+GRANT ALL ON cdosborn.patient TO PUBLIC;
+GRANT ALL ON cdosborn.appt TO PUBLIC;
+GRANT ALL ON cdosborn.service TO PUBLIC;
+GRANT ALL ON cdosborn.lab TO PUBLIC;
+GRANT ALL ON cdosborn.procedure TO PUBLIC;
+GRANT ALL ON cdosborn.labservice TO PUBLIC;
+GRANT ALL ON cdosborn.supply TO PUBLIC;
+GRANT ALL ON cdosborn.servicesupply TO PUBLIC;
+GRANT ALL ON cdosborn.labsupply TO PUBLIC;
+GRANT ALL ON cdosborn.payment TO PUBLIC;
+GRANT ALL ON cdosborn.visit TO PUBLIC;
