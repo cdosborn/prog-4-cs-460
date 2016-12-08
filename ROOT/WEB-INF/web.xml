@@ -201,16 +201,7 @@
     <servlet-name>Services</servlet-name>
     <url-pattern>/service.jsp</url-pattern>
   </servlet-mapping>
-    
-  <servlet>
-    <servlet-name>Procedures</servlet-name>
-    <servlet-class>controller.Procedure</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Procedures</servlet-name>
-    <url-pattern>/service/procedure.jsp</url-pattern>
-  </servlet-mapping>
-    
+
   <!-- PAYMENTS -->
   <servlet>
     <servlet-name>Payment</servlet-name>

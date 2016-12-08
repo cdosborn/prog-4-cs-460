@@ -37,6 +37,7 @@ INSERT INTO cdosborn.supply        VALUES (6, 'Anesthesia', 10.00);
 -- services 
 INSERT INTO cdosborn.service       VALUES (1, 'Root Canal', 30.00);
 INSERT INTO cdosborn.service       VALUES (2, 'Oral Exam', 30.00);
+<<<<<<< HEAD
 INSERT INTO cdosborn.service       VALUES (3, 'Amalgam Filling', 40.00); 
 INSERT INTO cdosborn.service       VALUES (4, 'Wisdom Tooth Extraction', 35.00); 
 INSERT INTO cdosborn.service       VALUES (5, 'Dental Cleaning', 20.00); 
@@ -46,6 +47,9 @@ INSERT INTO cdosborn.service       VALUES (6, 'Gum Surgery', 50.00);
 INSERT INTO cdosborn.procedure     VALUES (2); 
 INSERT INTO cdosborn.procedure     VALUES (5);
 INSERT INTO cdosborn.procedure     VALUES (6);
+=======
+INSERT INTO cdosborn.service       VALUES (3, 'Teeth Cleaning', 25.00);
+>>>>>>> f02db32fee176910bdb8109e6f838eee8b88cae9
 
 -- #, service#, supply#, quantity
 INSERT INTO cdosborn.servicesupply VALUES (1, 1, 4, 7);
@@ -60,10 +64,19 @@ INSERT INTO cdosborn.labservice    VALUES (1, 1, 3);
 INSERT INTO cdosborn.labservice    VALUES (2, 2, 1); 
 INSERT INTO cdosborn.labservice    VALUES (3, 3, 4); 
 
+<<<<<<< HEAD
 -- labsupply#, lab#, supply#, qty
 INSERT INTO cdosborn.labsupply     VALUES (1, 1, 5, 2);
 INSERT INTO cdosborn.labsupply     VALUES (2, 2, 4, 7);
 INSERT INTO cdosborn.labsupply     VALUES (3, 3, 1, 4); 
+=======
+INSERT INTO cdosborn.labservice    VALUES (1, 1, 1);
+INSERT INTO cdosborn.labservice    VALUES (2, 1, 2);
+INSERT INTO cdosborn.labservice    VALUES (3, 2, 1);
+INSERT INTO cdosborn.labservice    VALUES (4, 3, 2);
+
+INSERT INTO cdosborn.procedure    VALUES (3);
+>>>>>>> f02db32fee176910bdb8109e6f838eee8b88cae9
 
 -- #, patient#, date
 INSERT INTO cdosborn.appt          VALUES (1, 1, SYSDATE + 1);
