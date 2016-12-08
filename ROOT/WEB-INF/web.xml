@@ -220,5 +220,4 @@
     <servlet-name>Payment</servlet-name>
     <url-pattern>/payment.jsp</url-pattern>
   </servlet-mapping>
-
 </web-app>
