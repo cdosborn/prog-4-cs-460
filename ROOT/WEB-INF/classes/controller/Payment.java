@@ -1,10 +1,10 @@
 /*+----------------------------------------------------------------------
  ||
- ||  Class Lab
+ ||  Class Payment
  ||
  ||         Author:  Margarita Norzagaray
  ||
- ||        Purpose:  Controller class for the 'lab' view.
+ ||        Purpose:  Controller class for the payments. 
  ||
  ||  Inherits From:  Extends HttpServlet.
  ||
@@ -19,7 +19,9 @@
  ||   Constructors:  None;
  ||
  ||  Class Methods:  doGet(HttpServletRequest req, HttpServletResponse resp)
- ||                  Returns a HttpServletResponse to lab.jsp.
+ ||                  Returns a HttpServletResponse to payment.jsp.
+ ||                  doPost(HttpServletRequest req, HttpServletResponse resp)
+ ||                  Returns nothing. 
  ||
  ||  Inst. Methods:  None.
  ||
@@ -36,8 +38,7 @@ public class Payment extends HttpServlet {
     /*---------------------------------------------------------------------
     |  Method doGet
     |
-    |  Purpose:  Selects all 'labs' in the database and displays the
-    |            services each lab offers.
+    |  Purpose:  Selects all payments a given patient has made. 
     |
     |  Pre-condition:  None.
     |
@@ -46,7 +47,7 @@ public class Payment extends HttpServlet {
     |  Parameters:
     |      req -- HttpServletRequest containing tuple info.
     |      resp -- HttpServletResponse that will be sent back to the
-    |              charge.jsp file.
+    |              payment.jsp file.
     |
     |  Returns:  Returns the query results to the web application.
     *-------------------------------------------------------------------*/
@@ -64,12 +65,7 @@ public class Payment extends HttpServlet {
         
         String pno = req.getParameter("patient");
         System.out.println(pno); 
-
-        /*String query = String.format("SELECT payment#, fname, lname, py.time AS time, amount " +
-                    "FROM cdosborn.payment py, cdosborn.patient pa " + 
-                    "WHERE py.patient#=pa.patient# AND py.patient#=(" +
-                    "SELECT patient# FROM cdosborn.visit v, cdosborn.appt a " +
-                    "WHERE v.visit#=%s AND v.appt#=a.appt#) ORDER BY payment#", vno);*/ 
+ 
         String query = String.format("SELECT payment#, fname, lname, time AS time, amount " +
                                      "FROM cdosborn.payment py, cdosborn.patient pa " +
                                      "WHERE py.patient#=pa.patient# AND pa.patient#=%s " +
@@ -104,6 +100,22 @@ public class Payment extends HttpServlet {
         req.getRequestDispatcher("/WEB-INF/view/payment/payment.jsp").forward(req, resp);
     } // end doGet 
     
+    /*---------------------------------------------------------------------
+    |  Method doPost
+    |
+    |  Purpose:  Inserts a new payment into the database. 
+    |
+    |  Pre-condition:  None.
+    |
+    |  Post-condition: None.
+    |
+    |  Parameters:
+    |      req -- HttpServletRequest containing tuple info.
+    |      resp -- HttpServletResponse that will be sent back to the
+    |              payment.jsp file.
+    |
+    |  Returns:  Returns nothing. 
+    *-------------------------------------------------------------------*/
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException { 
         System.out.println("doPOST!!!");
         Database db = new Database();

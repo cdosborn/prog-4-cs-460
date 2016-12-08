@@ -1,11 +1,10 @@
 /*+----------------------------------------------------------------------
  ||
- ||  Class Sevices
+ ||  Class Lab
  ||
  ||         Author:  Margarita Norzagaray
  ||
- ||        Purpose:  This class is the controller for the 'services'
- ||                  view.
+ ||        Purpose:  Controller class for the 'lab' view.
  ||
  ||  Inherits From:  Extends HttpServlet.
  ||
@@ -20,7 +19,7 @@
  ||   Constructors:  None;
  ||
  ||  Class Methods:  doGet(HttpServletRequest req, HttpServletResponse resp)
- ||                  Returns a HttpServletResponse to service.jsp.
+ ||                  Returns a HttpServletResponse to lab.jsp.
  ||
  ||  Inst. Methods:  None.
  ||
@@ -34,11 +33,11 @@ import java.util.*;
 
 public class Service extends HttpServlet {
 
-     /*---------------------------------------------------------------------
+    /*---------------------------------------------------------------------
     |  Method doGet
     |
-    |  Purpose:  Selects all 'services' provided by the office and
-    |            laboratires.
+    |  Purpose:  Selects all 'labs' in the database and displays the
+    |            services each lab offers.
     |
     |  Pre-condition:  None.
     |
@@ -56,11 +55,21 @@ public class Service extends HttpServlet {
         Database db = new Database();
         db.open();
 
-        String query = "SELECT service#, name FROM cdosborn.service";
+        String query =
+            " SELECT service.service# service#, lab.name lab, service.name service" +
+            " FROM" +
+            " labservice " +
+            " INNER JOIN" +
+            "     service on labservice.service#=service.service#" +
+            " RIGHT OUTER JOIN" +
+            "     lab on lab.lab# = labservice.lab#" +
+            " ORDER BY service.service#";
+
         List<List<String>> data = new ArrayList<>();
         List<String> cols = Arrays.asList(new String[] {
-            "service#",
-            "name"
+            "service#", 
+            "lab",
+            "service"
         });
 
         List<String> row;
@@ -81,6 +90,6 @@ public class Service extends HttpServlet {
         req.setAttribute("cols", cols);
         req.setAttribute("data", data);
         req.setAttribute("numrows", data.size());
-        req.getRequestDispatcher("/WEB-INF/view/visit/service.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/service/service.jsp").forward(req, resp);
     }
 }
